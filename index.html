@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS/HTML Generator Tools</title>
+    <title>CSS Generator Tools</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>CSS/HTML Generator Tools</h1>
-        <p>Create and customize various CSS effects and HTML elements with live preview</p>
+        <h1>CSS Generator Tools</h1>
+        <p>Create beautiful CSS styles with ease</p>
     </header>
 
     <main>
         <div class="tabs">
             <button class="tab-btn active" data-tab="button-generator">Button Animation</button>
-            <button class="tab-btn" data-tab="box-shadow">Box Shadow</button>
+            <button class="tab-btn" data-tab="shadow-maker">Box Shadow</button>
             <button class="tab-btn" data-tab="hover-effect">Hover Effect</button>
             <button class="tab-btn" data-tab="color-picker">Color Picker</button>
             <button class="tab-btn" data-tab="table-generator">Table Generator</button>
             <button class="tab-btn" data-tab="form-generator">Form Generator</button>
             <button class="tab-btn" data-tab="gradient-generator">Gradient Generator</button>
-            <button class="tab-btn" data-tab="animation-generator">Animation Generator</button>
-            <button class="tab-btn" data-tab="filter-generator">Filter Effects</button>
-            <button class="tab-btn" data-tab="transform-generator">Transform Generator</button>
+            <button class="tab-btn" data-tab="animation-generator">CSS Animation</button>
+            <button class="tab-btn" data-tab="filter-generator">CSS Filter</button>
+            <button class="tab-btn" data-tab="transform-generator">CSS Transform</button>
             <button class="tab-btn" data-tab="flexbox-generator">Flexbox Generator</button>
             <button class="tab-btn" data-tab="grid-generator">Grid Generator</button>
-            <button class="tab-btn" data-tab="responsive-generator">Responsive Design</button>
+            <button class="tab-btn" data-tab="responsive-tool">Responsive Tool</button>
             <button class="tab-btn" data-tab="svg-generator">SVG Icon Generator</button>
         </div>
 
@@ -60,7 +60,7 @@
                         <label for="btn-hover-effect">Hover Effect</label>
                         <select id="btn-hover-effect">
                             <option value="scale">Scale</option>
-                            <option value="bg-change">Background Color Change</option>
+                            <option value="bg-change">Background Change</option>
                             <option value="shadow">Shadow</option>
                             <option value="border">Border</option>
                         </select>
@@ -76,21 +76,19 @@
                         <button id="btn-preview">Click Me</button>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="btn-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="btn-css-code"></pre>
-                        <button class="copy-btn" data-target="btn-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
                     </div>
                     <div class="code-container">
-                        <h3>HTML Code</h3>
+                        <h3>HTML Code <button class="copy-btn small" data-target="btn-html-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="btn-html-code"></pre>
-                        <button class="copy-btn" data-target="btn-html-code"><i class="fas fa-copy"></i> Copy HTML</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Box Shadow Maker -->
-        <div id="box-shadow" class="tab-pane">
+        <div id="shadow-maker" class="tab-pane">
             <h2>Box Shadow Maker</h2>
             <div class="tool-container">
                 <div class="controls">
@@ -118,7 +116,7 @@
                         <label for="shadow-opacity">Opacity <span id="shadow-opacity-value">0.3</span></label>
                         <input type="range" id="shadow-opacity" min="0" max="100" value="30">
                     </div>
-                    <div class="control-group checkbox-group">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="shadow-inset">
                         <label for="shadow-inset">Inset Shadow</label>
                     </div>
@@ -129,9 +127,8 @@
                         <div id="shadow-preview"></div>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="shadow-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="shadow-css-code"></pre>
-                        <button class="copy-btn" data-target="shadow-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
                     </div>
                 </div>
             </div>
@@ -163,25 +160,33 @@
                         <label for="hover-transition">Transition Duration <span id="hover-transition-value">0.3s</span></label>
                         <input type="range" id="hover-transition" min="0" max="2" step="0.1" value="0.3">
                     </div>
-                    <div class="control-group checkbox-group">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="hover-scale" checked>
-                        <label for="hover-scale">Scale</label>
-                        <input type="range" id="hover-scale-value" min="0.5" max="2" step="0.1" value="1.1">
-                        <span id="hover-scale-display">1.1</span>
+                        <label for="hover-scale">Scale Effect</label>
                     </div>
-                    <div class="control-group checkbox-group">
+                    <div class="control-group">
+                        <label for="hover-scale-value">Scale Value <span id="hover-scale-display">1.1</span></label>
+                        <input type="range" id="hover-scale-value" min="0.5" max="2" step="0.05" value="1.1">
+                    </div>
+                    <div class="checkbox-group">
                         <input type="checkbox" id="hover-bg-change">
-                        <label for="hover-bg-change">Background Color Change</label>
+                        <label for="hover-bg-change">Background Change</label>
+                    </div>
+                    <div class="control-group">
+                        <label for="hover-bg-change-color">Hover Background Color</label>
                         <input type="color" id="hover-bg-change-color" value="#2980b9">
                     </div>
-                    <div class="control-group checkbox-group">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="hover-text-change">
                         <label for="hover-text-change">Text Color Change</label>
-                        <input type="color" id="hover-text-change-color" value="#EEEEEE">
                     </div>
-                    <div class="control-group checkbox-group">
+                    <div class="control-group">
+                        <label for="hover-text-change-color">Hover Text Color</label>
+                        <input type="color" id="hover-text-change-color" value="#f1c40f">
+                    </div>
+                    <div class="checkbox-group">
                         <input type="checkbox" id="hover-shadow">
-                        <label for="hover-shadow">Add Shadow</label>
+                        <label for="hover-shadow">Shadow Effect</label>
                     </div>
                 </div>
                 <div class="preview">
@@ -190,14 +195,12 @@
                         <div id="hover-preview">Hover over me</div>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="hover-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="hover-css-code"></pre>
-                        <button class="copy-btn" data-target="hover-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
                     </div>
                     <div class="code-container">
-                        <h3>HTML Code</h3>
+                        <h3>HTML Code <button class="copy-btn small" data-target="hover-html-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="hover-html-code"></pre>
-                        <button class="copy-btn" data-target="hover-html-code"><i class="fas fa-copy"></i> Copy HTML</button>
                     </div>
                 </div>
             </div>
@@ -219,20 +222,20 @@
                     <div class="control-group">
                         <label>Color Format</label>
                         <div class="radio-group">
-                            <input type="radio" id="color-format-hex" name="color-format" value="hex" checked>
-                            <label for="color-format-hex">HEX</label>
+                            <input type="radio" id="format-hex" name="color-format" value="hex" checked>
+                            <label for="format-hex">HEX</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="color-format-rgb" name="color-format" value="rgb">
-                            <label for="color-format-rgb">RGB</label>
+                            <input type="radio" id="format-rgb" name="color-format" value="rgb">
+                            <label for="format-rgb">RGB</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="color-format-rgba" name="color-format" value="rgba">
-                            <label for="color-format-rgba">RGBA</label>
+                            <input type="radio" id="format-rgba" name="color-format" value="rgba">
+                            <label for="format-rgba">RGBA</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="color-format-hsl" name="color-format" value="hsl">
-                            <label for="color-format-hsl">HSL</label>
+                            <input type="radio" id="format-hsl" name="color-format" value="hsl">
+                            <label for="format-hsl">HSL</label>
                         </div>
                     </div>
                 </div>
@@ -264,9 +267,8 @@
                         </div>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
-                        <pre id="color-css-code">background-color: #3498db;</pre>
-                        <button class="copy-btn" data-target="color-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
+                        <h3>CSS Code <button class="copy-btn small" data-target="color-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
+                        <pre id="color-css-code"></pre>
                     </div>
                 </div>
             </div>
@@ -285,13 +287,13 @@
                         <label for="table-cols">Number of Columns</label>
                         <input type="number" id="table-cols" min="1" max="10" value="3">
                     </div>
-                    <div class="control-group checkbox-group">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="table-header" checked>
                         <label for="table-header">Include Header</label>
                     </div>
                     <div class="control-group">
                         <label for="table-border">Border Width <span id="table-border-value">1px</span></label>
-                        <input type="range" id="table-border" min="0" max="5" value="1">
+                        <input type="range" id="table-border" min="0" max="10" value="1">
                     </div>
                     <div class="control-group">
                         <label for="table-border-color">Border Color</label>
@@ -301,11 +303,11 @@
                         <label for="table-padding">Cell Padding <span id="table-padding-value">8px</span></label>
                         <input type="range" id="table-padding" min="0" max="20" value="8">
                     </div>
-                    <div class="control-group checkbox-group">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="table-striped" checked>
                         <label for="table-striped">Striped Rows</label>
                     </div>
-                    <div class="control-group checkbox-group">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="table-hover" checked>
                         <label for="table-hover">Hover Effect</label>
                     </div>
@@ -317,14 +319,12 @@
                         <div id="table-preview"></div>
                     </div>
                     <div class="code-container">
-                        <h3>HTML Code</h3>
+                        <h3>HTML Code <button class="copy-btn small" data-target="table-html-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="table-html-code"></pre>
-                        <button class="copy-btn" data-target="table-html-code"><i class="fas fa-copy"></i> Copy HTML</button>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="table-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="table-css-code"></pre>
-                        <button class="copy-btn" data-target="table-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
                     </div>
                 </div>
             </div>
@@ -382,14 +382,12 @@
                         <div id="form-preview"></div>
                     </div>
                     <div class="code-container">
-                        <h3>HTML Code</h3>
+                        <h3>HTML Code <button class="copy-btn small" data-target="form-html-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="form-html-code"></pre>
-                        <button class="copy-btn" data-target="form-html-code"><i class="fas fa-copy"></i> Copy HTML</button>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="form-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="form-css-code"></pre>
-                        <button class="copy-btn" data-target="form-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
                     </div>
                 </div>
             </div>
@@ -407,52 +405,39 @@
                             <option value="radial">Radial Gradient</option>
                         </select>
                     </div>
-                    <div id="linear-controls">
-                        <div class="control-group">
-                            <label for="gradient-angle">Angle <span id="gradient-angle-value">90deg</span></label>
-                            <input type="range" id="gradient-angle" min="0" max="360" value="90">
-                        </div>
+                    <div class="control-group" id="linear-angle-group">
+                        <label for="gradient-angle">Angle <span id="gradient-angle-value">90deg</span></label>
+                        <input type="range" id="gradient-angle" min="0" max="360" value="90">
                     </div>
-                    <div id="radial-controls" style="display: none;">
-                        <div class="control-group">
-                            <label for="radial-shape">Shape</label>
-                            <select id="radial-shape">
-                                <option value="circle">Circle</option>
-                                <option value="ellipse">Ellipse</option>
-                            </select>
-                        </div>
-                        <div class="control-group">
-                            <label for="radial-position">Position</label>
-                            <select id="radial-position">
-                                <option value="center">Center</option>
-                                <option value="top">Top</option>
-                                <option value="right">Right</option>
-                                <option value="bottom">Bottom</option>
-                                <option value="left">Left</option>
-                                <option value="top left">Top Left</option>
-                                <option value="top right">Top Right</option>
-                                <option value="bottom left">Bottom Left</option>
-                                <option value="bottom right">Bottom Right</option>
-                            </select>
-                        </div>
+                    <div class="control-group" id="radial-position-group" style="display: none;">
+                        <label for="gradient-position">Position</label>
+                        <select id="gradient-position">
+                            <option value="center">Center</option>
+                            <option value="top">Top</option>
+                            <option value="right">Right</option>
+                            <option value="bottom">Bottom</option>
+                            <option value="left">Left</option>
+                            <option value="top left">Top Left</option>
+                            <option value="top right">Top Right</option>
+                            <option value="bottom left">Bottom Left</option>
+                            <option value="bottom right">Bottom Right</option>
+                        </select>
                     </div>
-                    <div id="gradient-stops">
-                        <div class="control-group">
-                            <label>Color Stops</label>
-                            <div class="gradient-stop">
-                                <input type="color" class="stop-color" value="#ff6b6b">
-                                <input type="range" class="stop-position" min="0" max="100" value="0">
-                                <span class="stop-position-value">0%</span>
-                                <button class="remove-stop"><i class="fas fa-times"></i></button>
-                            </div>
-                            <div class="gradient-stop">
-                                <input type="color" class="stop-color" value="#4ecdc4">
-                                <input type="range" class="stop-position" min="0" max="100" value="100">
-                                <span class="stop-position-value">100%</span>
-                                <button class="remove-stop"><i class="fas fa-times"></i></button>
-                            </div>
-                        </div>
-                        <button id="add-stop" class="action-btn small">Add Color Stop</button>
+                    <div class="control-group">
+                        <label for="gradient-color-1">Color 1</label>
+                        <input type="color" id="gradient-color-1" value="#ff7e5f">
+                    </div>
+                    <div class="control-group">
+                        <label for="gradient-color-2">Color 2</label>
+                        <input type="color" id="gradient-color-2" value="#feb47b">
+                    </div>
+                    <div class="control-group">
+                        <label for="gradient-color-3">Color 3 (Optional)</label>
+                        <input type="color" id="gradient-color-3" value="#ffffff">
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="gradient-use-color-3">
+                        <label for="gradient-use-color-3">Use Color 3</label>
                     </div>
                 </div>
                 <div class="preview">
@@ -461,15 +446,14 @@
                         <div id="gradient-preview"></div>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="gradient-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="gradient-css-code"></pre>
-                        <button class="copy-btn" data-target="gradient-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- CSS Animation Generator -->
+        <!-- Animation Generator -->
         <div id="animation-generator" class="tab-pane">
             <h2>CSS Animation Generator</h2>
             <div class="tool-container">
@@ -485,11 +469,11 @@
                     <div class="control-group">
                         <label for="animation-timing">Timing Function</label>
                         <select id="animation-timing">
-                            <option value="linear">Linear</option>
-                            <option value="ease" selected>Ease</option>
-                            <option value="ease-in">Ease In</option>
-                            <option value="ease-out">Ease Out</option>
-                            <option value="ease-in-out">Ease In Out</option>
+                            <option value="ease">ease</option>
+                            <option value="linear">linear</option>
+                            <option value="ease-in">ease-in</option>
+                            <option value="ease-out">ease-out</option>
+                            <option value="ease-in-out">ease-in-out</option>
                         </select>
                     </div>
                     <div class="control-group">
@@ -502,58 +486,54 @@
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                            <option value="infinite" selected>Infinite</option>
+                            <option value="infinite">infinite</option>
                         </select>
                     </div>
                     <div class="control-group">
                         <label for="animation-direction">Direction</label>
                         <select id="animation-direction">
-                            <option value="normal" selected>Normal</option>
-                            <option value="reverse">Reverse</option>
-                            <option value="alternate">Alternate</option>
-                            <option value="alternate-reverse">Alternate Reverse</option>
+                            <option value="normal">normal</option>
+                            <option value="reverse">reverse</option>
+                            <option value="alternate">alternate</option>
+                            <option value="alternate-reverse">alternate-reverse</option>
                         </select>
                     </div>
                     <div class="control-group">
                         <label for="animation-fill">Fill Mode</label>
                         <select id="animation-fill">
-                            <option value="none">None</option>
-                            <option value="forwards" selected>Forwards</option>
-                            <option value="backwards">Backwards</option>
-                            <option value="both">Both</option>
+                            <option value="none">none</option>
+                            <option value="forwards">forwards</option>
+                            <option value="backwards">backwards</option>
+                            <option value="both">both</option>
                         </select>
                     </div>
                     <div class="control-group">
                         <label for="animation-type">Animation Type</label>
                         <select id="animation-type">
-                            <option value="bounce">Bounce</option>
                             <option value="fade">Fade</option>
                             <option value="slide">Slide</option>
                             <option value="rotate">Rotate</option>
+                            <option value="scale">Scale</option>
+                            <option value="bounce">Bounce</option>
                             <option value="pulse">Pulse</option>
-                            <option value="shake">Shake</option>
                         </select>
                     </div>
                 </div>
                 <div class="preview">
                     <h3>Preview</h3>
                     <div class="preview-container">
-                        <div id="animation-preview">Animation</div>
+                        <div id="animation-preview">Animation Element</div>
+                        <button id="play-animation" class="action-btn small">Play Animation</button>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="animation-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="animation-css-code"></pre>
-                        <button class="copy-btn" data-target="animation-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
-                    </div>
-                    <div class="animation-controls">
-                        <button id="play-animation" class="action-btn">Play Animation</button>
-                        <button id="pause-animation" class="action-btn">Pause Animation</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Filter Effects Generator -->
+        <!-- Filter Generator -->
         <div id="filter-generator" class="tab-pane">
             <h2>CSS Filter Effects Generator</h2>
             <div class="tool-container">
@@ -583,6 +563,10 @@
                         <input type="range" id="filter-invert" min="0" max="100" value="0">
                     </div>
                     <div class="control-group">
+                        <label for="filter-opacity">Opacity <span id="filter-opacity-value">100%</span></label>
+                        <input type="range" id="filter-opacity" min="0" max="100" value="100">
+                    </div>
+                    <div class="control-group">
                         <label for="filter-saturate">Saturate <span id="filter-saturate-value">100%</span></label>
                         <input type="range" id="filter-saturate" min="0" max="300" value="100">
                     </div>
@@ -590,41 +574,16 @@
                         <label for="filter-sepia">Sepia <span id="filter-sepia-value">0%</span></label>
                         <input type="range" id="filter-sepia" min="0" max="100" value="0">
                     </div>
-                    <div class="control-group checkbox-group">
-                        <input type="checkbox" id="filter-drop-shadow">
-                        <label for="filter-drop-shadow">Drop Shadow</label>
-                    </div>
-                    <div id="drop-shadow-controls" style="display: none;">
-                        <div class="control-group">
-                            <label for="filter-shadow-h">Horizontal <span id="filter-shadow-h-value">2px</span></label>
-                            <input type="range" id="filter-shadow-h" min="-20" max="20" value="2">
-                        </div>
-                        <div class="control-group">
-                            <label for="filter-shadow-v">Vertical <span id="filter-shadow-v-value">2px</span></label>
-                            <input type="range" id="filter-shadow-v" min="-20" max="20" value="2">
-                        </div>
-                        <div class="control-group">
-                            <label for="filter-shadow-blur">Blur <span id="filter-shadow-blur-value">3px</span></label>
-                            <input type="range" id="filter-shadow-blur" min="0" max="20" value="3">
-                        </div>
-                        <div class="control-group">
-                            <label for="filter-shadow-color">Color</label>
-                            <input type="color" id="filter-shadow-color" value="#000000">
-                        </div>
-                    </div>
+                    <button id="reset-filters" class="action-btn">Reset Filters</button>
                 </div>
                 <div class="preview">
                     <h3>Preview</h3>
                     <div class="preview-container">
-                        <div id="filter-image-container">
-                            <img id="filter-preview" src="https://via.placeholder.com/450x300" alt="Filter Preview Image">
-                        </div>
-                        <div id="filter-text-preview">Sample Text</div>
+                        <img id="filter-preview" src="https://picsum.photos/id/1015/400/300" alt="Filter Preview Image">
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="filter-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="filter-css-code"></pre>
-                        <button class="copy-btn" data-target="filter-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
                     </div>
                 </div>
             </div>
@@ -636,45 +595,41 @@
             <div class="tool-container">
                 <div class="controls">
                     <div class="control-group">
-                        <label for="scale-x">Scale X <span id="scale-x-value">1</span></label>
-                        <input type="range" id="scale-x" min="0" max="3" step="0.1" value="1">
+                        <label for="transform-scale-x">Scale X <span id="transform-scale-x-value">1</span></label>
+                        <input type="range" id="transform-scale-x" min="0" max="3" step="0.1" value="1">
                     </div>
                     <div class="control-group">
-                        <label for="scale-y">Scale Y <span id="scale-y-value">1</span></label>
-                        <input type="range" id="scale-y" min="0" max="3" step="0.1" value="1">
+                        <label for="transform-scale-y">Scale Y <span id="transform-scale-y-value">1</span></label>
+                        <input type="range" id="transform-scale-y" min="0" max="3" step="0.1" value="1">
                     </div>
                     <div class="control-group">
-                        <label for="rotate-deg">Rotate <span id="rotate-deg-value">0deg</span></label>
-                        <input type="range" id="rotate-deg" min="-180" max="180" value="0">
+                        <label for="transform-rotate">Rotate <span id="transform-rotate-value">0deg</span></label>
+                        <input type="range" id="transform-rotate" min="0" max="360" value="0">
                     </div>
                     <div class="control-group">
-                        <label for="translate-x">Translate X <span id="translate-x-value">0px</span></label>
-                        <input type="range" id="translate-x" min="-100" max="100" value="0">
+                        <label for="transform-translate-x">Translate X <span id="transform-translate-x-value">0px</span></label>
+                        <input type="range" id="transform-translate-x" min="-100" max="100" value="0">
                     </div>
                     <div class="control-group">
-                        <label for="translate-y">Translate Y <span id="translate-y-value">0px</span></label>
-                        <input type="range" id="translate-y" min="-100" max="100" value="0">
+                        <label for="transform-translate-y">Translate Y <span id="transform-translate-y-value">0px</span></label>
+                        <input type="range" id="transform-translate-y" min="-100" max="100" value="0">
                     </div>
                     <div class="control-group">
-                        <label for="skew-x">Skew X <span id="skew-x-value">0deg</span></label>
-                        <input type="range" id="skew-x" min="-90" max="90" value="0">
+                        <label for="transform-skew-x">Skew X <span id="transform-skew-x-value">0deg</span></label>
+                        <input type="range" id="transform-skew-x" min="-90" max="90" value="0">
                     </div>
                     <div class="control-group">
-                        <label for="skew-y">Skew Y <span id="skew-y-value">0deg</span></label>
-                        <input type="range" id="skew-y" min="-90" max="90" value="0">
+                        <label for="transform-skew-y">Skew Y <span id="transform-skew-y-value">0deg</span></label>
+                        <input type="range" id="transform-skew-y" min="-90" max="90" value="0">
                     </div>
                     <div class="control-group">
                         <label for="transform-origin">Transform Origin</label>
                         <select id="transform-origin">
-                            <option value="center center">Center (default)</option>
-                            <option value="top left">Top Left</option>
-                            <option value="top center">Top Center</option>
-                            <option value="top right">Top Right</option>
-                            <option value="center left">Center Left</option>
-                            <option value="center right">Center Right</option>
-                            <option value="bottom left">Bottom Left</option>
-                            <option value="bottom center">Bottom Center</option>
-                            <option value="bottom right">Bottom Right</option>
+                            <option value="center">center</option>
+                            <option value="top left">top left</option>
+                            <option value="top right">top right</option>
+                            <option value="bottom left">bottom left</option>
+                            <option value="bottom right">bottom right</option>
                         </select>
                     </div>
                     <button id="reset-transform" class="action-btn">Reset Transform</button>
@@ -685,9 +640,8 @@
                         <div id="transform-preview">Transform Me</div>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="transform-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="transform-css-code"></pre>
-                        <button class="copy-btn" data-target="transform-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
                     </div>
                 </div>
             </div>
@@ -695,113 +649,80 @@
 
         <!-- Flexbox Generator -->
         <div id="flexbox-generator" class="tab-pane">
-            <h2>Flexbox Generator</h2>
+            <h2>CSS Flexbox Generator</h2>
             <div class="tool-container">
                 <div class="controls">
                     <div class="control-group">
-                        <label for="flex-container-display">Display</label>
-                        <select id="flex-container-display">
-                            <option value="flex">flex</option>
-                            <option value="inline-flex">inline-flex</option>
+                        <label for="flex-direction">Flex Direction</label>
+                        <select id="flex-direction">
+                            <option value="row">row</option>
+                            <option value="row-reverse">row-reverse</option>
+                            <option value="column">column</option>
+                            <option value="column-reverse">column-reverse</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label for="flex-container-direction">Flex Direction</label>
-                        <select id="flex-container-direction">
-                            <option value="row">Row</option>
-                            <option value="row-reverse">Row Reverse</option>
-                            <option value="column">Column</option>
-                            <option value="column-reverse">Column Reverse</option>
+                        <label for="flex-wrap">Flex Wrap</label>
+                        <select id="flex-wrap">
+                            <option value="nowrap">nowrap</option>
+                            <option value="wrap">wrap</option>
+                            <option value="wrap-reverse">wrap-reverse</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label for="flex-container-wrap">Flex Wrap</label>
-                        <select id="flex-container-wrap">
-                            <option value="nowrap">No Wrap</option>
-                            <option value="wrap">Wrap</option>
-                            <option value="wrap-reverse">Wrap Reverse</option>
+                        <label for="justify-content">Justify Content</label>
+                        <select id="justify-content">
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-between</option>
+                            <option value="space-around">space-around</option>
+                            <option value="space-evenly">space-evenly</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label for="flex-container-justify">Justify Content</label>
-                        <select id="flex-container-justify">
-                            <option value="flex-start">Flex Start</option>
-                            <option value="flex-end">Flex End</option>
-                            <option value="center">Center</option>
-                            <option value="space-between">Space Between</option>
-                            <option value="space-around">Space Around</option>
-                            <option value="space-evenly">Space Evenly</option>
+                        <label for="align-items">Align Items</label>
+                        <select id="align-items">
+                            <option value="stretch">stretch</option>
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="baseline">baseline</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label for="flex-container-align-items">Align Items</label>
-                        <select id="flex-container-align-items">
-                            <option value="stretch">Stretch</option>
-                            <option value="flex-start">Flex Start</option>
-                            <option value="flex-end">Flex End</option>
-                            <option value="center">Center</option>
-                            <option value="baseline">Baseline</option>
+                        <label for="align-content">Align Content</label>
+                        <select id="align-content">
+                            <option value="stretch">stretch</option>
+                            <option value="flex-start">flex-start</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-between</option>
+                            <option value="space-around">space-around</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label for="flex-container-align-content">Align Content</label>
-                        <select id="flex-container-align-content">
-                            <option value="normal">Normal</option>
-                            <option value="flex-start">Flex Start</option>
-                            <option value="flex-end">Flex End</option>
-                            <option value="center">Center</option>
-                            <option value="space-between">Space Between</option>
-                            <option value="space-around">Space Around</option>
-                            <option value="space-evenly">Space Evenly</option>
-                            <option value="stretch">Stretch</option>
-                        </select>
-                    </div>
-                    <hr>
-                    <h4>Item Properties (highlighted item)</h4>
-                    <div class="control-group">
-                        <label for="flex-item-order">Order</label>
-                        <input type="number" id="flex-item-order" min="0" max="10" value="0">
+                        <label for="flex-gap">Gap <span id="flex-gap-value">10px</span></label>
+                        <input type="range" id="flex-gap" min="0" max="50" value="10">
                     </div>
                     <div class="control-group">
-                        <label for="flex-item-grow">Flex Grow</label>
-                        <input type="number" id="flex-item-grow" min="0" max="10" value="0">
+                        <label for="flex-items">Number of Items</label>
+                        <input type="number" id="flex-items" min="1" max="12" value="6">
                     </div>
-                    <div class="control-group">
-                        <label for="flex-item-shrink">Flex Shrink</label>
-                        <input type="number" id="flex-item-shrink" min="0" max="10" value="1">
-                    </div>
-                    <div class="control-group">
-                        <label for="flex-item-basis">Flex Basis</label>
-                        <input type="text" id="flex-item-basis" value="auto">
-                    </div>
-                    <div class="control-group">
-                        <label for="flex-item-align-self">Align Self</label>
-                        <select id="flex-item-align-self">
-                            <option value="auto">Auto</option>
-                            <option value="flex-start">Flex Start</option>
-                            <option value="flex-end">Flex End</option>
-                            <option value="center">Center</option>
-                            <option value="baseline">Baseline</option>
-                            <option value="stretch">Stretch</option>
-                        </select>
-                    </div>
+                    <button id="generate-flexbox" class="action-btn">Generate Flexbox</button>
                 </div>
                 <div class="preview">
                     <h3>Preview</h3>
                     <div class="preview-container">
-                        <div id="flex-container-preview">
-                            <div class="flex-item">1</div>
-                            <div class="flex-item">2</div>
-                            <div class="flex-item">3</div>
-                            <div class="flex-item" id="flex-item-preview">4</div>
-                            <div class="flex-item">5</div>
-                            <div class="flex-item">6</div>
-                        </div>
+                        <div id="flexbox-preview"></div>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
-                        <pre id="flex-css-code"></pre>
-                        <button class="copy-btn" data-target="flex-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
+                        <h3>CSS Code <button class="copy-btn small" data-target="flexbox-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
+                        <pre id="flexbox-css-code"></pre>
+                    </div>
+                    <div class="code-container">
+                        <h3>HTML Code <button class="copy-btn small" data-target="flexbox-html-code"><i class="fas fa-copy"></i> Copy</button></h3>
+                        <pre id="flexbox-html-code"></pre>
                     </div>
                 </div>
             </div>
@@ -813,198 +734,150 @@
             <div class="tool-container">
                 <div class="controls">
                     <div class="control-group">
-                        <label for="grid-container-display">Display</label>
-                        <select id="grid-container-display">
-                            <option value="grid">grid</option>
-                            <option value="inline-grid">inline-grid</option>
+                        <label for="grid-columns">Grid Template Columns</label>
+                        <input type="text" id="grid-columns" value="1fr 1fr 1fr">
+                    </div>
+                    <div class="control-group">
+                        <label for="grid-rows">Grid Template Rows</label>
+                        <input type="text" id="grid-rows" value="auto auto">
+                    </div>
+                    <div class="control-group">
+                        <label for="grid-column-gap">Column Gap <span id="grid-column-gap-value">10px</span></label>
+                        <input type="range" id="grid-column-gap" min="0" max="50" value="10">
+                    </div>
+                    <div class="control-group">
+                        <label for="grid-row-gap">Row Gap <span id="grid-row-gap-value">10px</span></label>
+                        <input type="range" id="grid-row-gap" min="0" max="50" value="10">
+                    </div>
+                    <div class="control-group">
+                        <label for="justify-items">Justify Items</label>
+                        <select id="justify-items">
+                            <option value="stretch">stretch</option>
+                            <option value="start">start</option>
+                            <option value="end">end</option>
+                            <option value="center">center</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label for="grid-container-template-columns">Grid Template Columns</label>
-                        <input type="text" id="grid-container-template-columns" value="repeat(3, 1fr)">
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-container-template-rows">Grid Template Rows</label>
-                        <input type="text" id="grid-container-template-rows" value="auto auto auto">
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-container-gap">Gap</label>
-                        <input type="text" id="grid-container-gap" value="10px">
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-container-justify-items">Justify Items</label>
-                        <select id="grid-container-justify-items">
-                            <option value="stretch">Stretch</option>
-                            <option value="start">Start</option>
-                            <option value="center">Center</option>
-                            <option value="end">End</option>
+                        <label for="align-grid-items">Align Items</label>
+                        <select id="align-grid-items">
+                            <option value="stretch">stretch</option>
+                            <option value="start">start</option>
+                            <option value="end">end</option>
+                            <option value="center">center</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label for="grid-container-align-items">Align Items</label>
-                        <select id="grid-container-align-items">
-                            <option value="stretch">Stretch</option>
-                            <option value="start">Start</option>
-                            <option value="center">Center</option>
-                            <option value="end">End</option>
-                        </select>
+                        <label for="grid-items">Number of Items</label>
+                        <input type="number" id="grid-items" min="1" max="12" value="6">
                     </div>
-                    <div class="control-group">
-                        <label for="grid-container-justify-content">Justify Content</label>
-                        <select id="grid-container-justify-content">
-                            <option value="start">Start</option>
-                            <option value="center">Center</option>
-                            <option value="end">End</option>
-                            <option value="space-between">Space Between</option>
-                            <option value="space-around">Space Around</option>
-                            <option value="space-evenly">Space Evenly</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-container-align-content">Align Content</label>
-                        <select id="grid-container-align-content">
-                            <option value="start">Start</option>
-                            <option value="center">Center</option>
-                            <option value="end">End</option>
-                            <option value="space-between">Space Between</option>
-                            <option value="space-around">Space Around</option>
-                            <option value="space-evenly">Space Evenly</option>
-                            <option value="stretch">Stretch</option>
-                        </select>
-                    </div>
-                    <hr>
-                    <h4>Item Properties (highlighted item)</h4>
-                    <div class="control-group">
-                        <label for="grid-item-column-start">Column Start</label>
-                        <input type="number" id="grid-item-column-start" min="1" max="6" value="2">
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-item-column-end">Column End</label>
-                        <input type="number" id="grid-item-column-end" min="1" max="6" value="3">
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-item-row-start">Row Start</label>
-                        <input type="number" id="grid-item-row-start" min="1" max="6" value="1">
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-item-row-end">Row End</label>
-                        <input type="number" id="grid-item-row-end" min="1" max="6" value="2">
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-item-justify-self">Justify Self</label>
-                        <select id="grid-item-justify-self">
-                            <option value="auto">Auto</option>
-                            <option value="start">Start</option>
-                            <option value="center">Center</option>
-                            <option value="end">End</option>
-                            <option value="stretch">Stretch</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <label for="grid-item-align-self">Align Self</label>
-                        <select id="grid-item-align-self">
-                            <option value="auto">Auto</option>
-                            <option value="start">Start</option>
-                            <option value="center">Center</option>
-                            <option value="end">End</option>
-                            <option value="stretch">Stretch</option>
-                        </select>
-                    </div>
+                    <button id="generate-grid" class="action-btn">Generate Grid</button>
                 </div>
                 <div class="preview">
                     <h3>Preview</h3>
                     <div class="preview-container">
-                        <div id="grid-container-preview">
-                            <div class="grid-item">1</div>
-                            <div class="grid-item" id="grid-item-preview">2</div>
-                            <div class="grid-item">3</div>
-                            <div class="grid-item">4</div>
-                            <div class="grid-item">5</div>
-                            <div class="grid-item">6</div>
-                            <div class="grid-item">7</div>
-                            <div class="grid-item">8</div>
-                            <div class="grid-item">9</div>
-                        </div>
+                        <div id="grid-preview"></div>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="grid-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="grid-css-code"></pre>
-                        <button class="copy-btn" data-target="grid-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
+                    </div>
+                    <div class="code-container">
+                        <h3>HTML Code <button class="copy-btn small" data-target="grid-html-code"><i class="fas fa-copy"></i> Copy</button></h3>
+                        <pre id="grid-html-code"></pre>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Responsive Design Tool -->
-        <div id="responsive-generator" class="tab-pane">
+        <div id="responsive-tool" class="tab-pane">
             <h2>Responsive Design Tool</h2>
             <div class="tool-container">
                 <div class="controls">
                     <div class="control-group">
-                        <label for="responsive-viewport-width">Viewport Width <span id="responsive-viewport-width-value">375px</span></label>
-                        <input type="range" id="responsive-viewport-width" min="320" max="1920" value="375">
-                    </div>
-                    <div class="control-group">
-                        <label for="responsive-viewport-height">Viewport Height <span id="responsive-viewport-height-value">667px</span></label>
-                        <input type="range" id="responsive-viewport-height" min="480" max="1080" value="667">
-                    </div>
-                    <div class="control-group">
-                        <label for="responsive-device-type">Device Type</label>
-                        <select id="responsive-device-type">
-                            <option value="mobile">Mobile</option>
-                            <option value="tablet">Tablet</option>
-                            <option value="desktop">Desktop</option>
+                        <label for="responsive-type">Responsive Type</label>
+                        <select id="responsive-type">
+                            <option value="media-query">Media Queries</option>
+                            <option value="container-query">Container Queries</option>
+                            <option value="fluid-typography">Fluid Typography</option>
                         </select>
                     </div>
-                    <div class="control-group">
-                        <label for="responsive-orientation">Orientation</label>
-                        <select id="responsive-orientation">
-                            <option value="portrait">Portrait</option>
-                            <option value="landscape">Landscape</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <label>Media Queries</label>
-                        <div id="responsive-media-queries">
-                            <div class="media-query">
-                                <input type="text" class="media-query-text" placeholder="Media Query" value="(min-width: 768px)">
-                                <textarea class="media-query-css" placeholder="CSS Code">/* Tablet styles */
-.container {
-  max-width: 720px;
-  margin: 0 auto;
-}</textarea>
-                                <button class="remove-media-query"><i class="fas fa-times"></i></button>
+                    <div id="media-query-controls">
+                        <div class="control-group">
+                            <label for="media-breakpoints">Breakpoints</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="breakpoint-sm" checked>
+                                <label for="breakpoint-sm">Small (576px)</label>
                             </div>
-                            <div class="media-query">
-                                <input type="text" class="media-query-text" placeholder="Media Query" value="(min-width: 1024px)">
-                                <textarea class="media-query-css" placeholder="CSS Code">/* Desktop styles */
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-}</textarea>
-                                <button class="remove-media-query"><i class="fas fa-times"></i></button>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="breakpoint-md" checked>
+                                <label for="breakpoint-md">Medium (768px)</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="breakpoint-lg" checked>
+                                <label for="breakpoint-lg">Large (992px)</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="breakpoint-xl" checked>
+                                <label for="breakpoint-xl">Extra Large (1200px)</label>
                             </div>
                         </div>
-                        <button id="add-media-query" class="action-btn small">Add Media Query</button>
                     </div>
+                    <div id="container-query-controls" style="display: none;">
+                        <div class="control-group">
+                            <label for="container-breakpoints">Container Breakpoints</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="container-sm" checked>
+                                <label for="container-sm">Small (400px)</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="container-md" checked>
+                                <label for="container-md">Medium (600px)</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="container-lg" checked>
+                                <label for="container-lg">Large (800px)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="fluid-typography-controls" style="display: none;">
+                        <div class="control-group">
+                            <label for="min-font-size">Min Font Size <span id="min-font-size-value">16px</span></label>
+                            <input type="range" id="min-font-size" min="12" max="24" value="16">
+                        </div>
+                        <div class="control-group">
+                            <label for="max-font-size">Max Font Size <span id="max-font-size-value">24px</span></label>
+                            <input type="range" id="max-font-size" min="16" max="48" value="24">
+                        </div>
+                        <div class="control-group">
+                            <label for="min-viewport-width">Min Viewport Width <span id="min-viewport-width-value">320px</span></label>
+                            <input type="range" id="min-viewport-width" min="320" max="768" value="320">
+                        </div>
+                        <div class="control-group">
+                            <label for="max-viewport-width">Max Viewport Width <span id="max-viewport-width-value">1200px</span></label>
+                            <input type="range" id="max-viewport-width" min="768" max="1920" value="1200">
+                        </div>
+                    </div>
+                    <button id="generate-responsive" class="action-btn">Generate Code</button>
                 </div>
                 <div class="preview">
                     <h3>Preview</h3>
                     <div class="preview-container">
-                        <div id="responsive-preview" style="width: 375px; height: 667px; border: 2px solid #ccc; overflow: auto;">
-                            <div class="responsive-content">
-                                <h2>Responsive Preview</h2>
-                                <p>Resize the viewport to see how the content adapts.</p>
-                                <div class="container">
-                                    <div class="box">Content Box</div>
-                                </div>
+                        <div id="responsive-preview">
+                            <div class="responsive-demo">
+                                <h3>Responsive Demo</h3>
+                                <p>Resize the window to see the changes</p>
                             </div>
                         </div>
                     </div>
                     <div class="code-container">
-                        <h3>CSS Code</h3>
+                        <h3>CSS Code <button class="copy-btn small" data-target="responsive-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
                         <pre id="responsive-css-code"></pre>
-                        <button class="copy-btn" data-target="responsive-css-code"><i class="fas fa-copy"></i> Copy CSS</button>
+                    </div>
+                    <div class="code-container">
+                        <h3>HTML Code <button class="copy-btn small" data-target="responsive-html-code"><i class="fas fa-copy"></i> Copy</button></h3>
+                        <pre id="responsive-html-code"></pre>
                     </div>
                 </div>
             </div>
@@ -1016,42 +889,41 @@
             <div class="tool-container">
                 <div class="controls">
                     <div class="control-group">
-                        <label for="svg-width">SVG Width</label>
-                        <input type="number" id="svg-width" min="16" max="512" value="100">
+                        <label for="svg-type">Icon Type</label>
+                        <select id="svg-type">
+                            <option value="arrow">Arrow</option>
+                            <option value="hamburger">Hamburger Menu</option>
+                            <option value="close">Close (X)</option>
+                            <option value="check">Check Mark</option>
+                            <option value="heart">Heart</option>
+                            <option value="star">Star</option>
+                            <option value="circle">Circle</option>
+                            <option value="square">Square</option>
+                        </select>
                     </div>
                     <div class="control-group">
-                        <label for="svg-height">SVG Height</label>
-                        <input type="number" id="svg-height" min="16" max="512" value="100">
+                        <label for="svg-size">Size <span id="svg-size-value">24px</span></label>
+                        <input type="range" id="svg-size" min="16" max="64" value="24">
+                    </div>
+                    <div class="control-group">
+                        <label for="svg-stroke-width">Stroke Width <span id="svg-stroke-width-value">2px</span></label>
+                        <input type="range" id="svg-stroke-width" min="1" max="5" value="2">
+                    </div>
+                    <div class="control-group">
+                        <label for="svg-color">Color</label>
+                        <input type="color" id="svg-color" value="#000000">
                     </div>
                     <div class="control-group">
                         <label for="svg-bg-color">Background Color</label>
                         <input type="color" id="svg-bg-color" value="#ffffff">
                     </div>
-                    <div class="control-group">
-                        <label for="svg-shape">Shape</label>
-                        <select id="svg-shape">
-                            <option value="circle">Circle</option>
-                            <option value="rect">Rectangle</option>
-                            <option value="ellipse">Ellipse</option>
-                            <option value="line">Line</option>
-                            <option value="polygon">Triangle</option>
-                        </select>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="svg-bg-enabled">
+                        <label for="svg-bg-enabled">Enable Background</label>
                     </div>
                     <div class="control-group">
-                        <label for="svg-shape-color">Shape Color</label>
-                        <input type="color" id="svg-shape-color" value="#6366f1">
-                    </div>
-                    <div class="control-group">
-                        <label for="svg-shape-size">Shape Size</label>
-                        <input type="range" id="svg-shape-size" min="10" max="100" value="40">
-                    </div>
-                    <div class="control-group">
-                        <label for="svg-shape-x">X Position</label>
-                        <input type="range" id="svg-shape-x" min="0" max="100" value="50">
-                    </div>
-                    <div class="control-group">
-                        <label for="svg-shape-y">Y Position</label>
-                        <input type="range" id="svg-shape-y" min="0" max="100" value="50">
+                        <label for="svg-border-radius">Border Radius <span id="svg-border-radius-value">0%</span></label>
+                        <input type="range" id="svg-border-radius" min="0" max="50" value="0">
                     </div>
                 </div>
                 <div class="preview">
@@ -1060,9 +932,12 @@
                         <div id="svg-preview"></div>
                     </div>
                     <div class="code-container">
-                        <h3>SVG Code</h3>
-                        <pre id="svg-html-code"></pre>
-                        <button class="copy-btn" data-target="svg-html-code"><i class="fas fa-copy"></i> Copy SVG</button>
+                        <h3>SVG Code <button class="copy-btn small" data-target="svg-code"><i class="fas fa-copy"></i> Copy</button></h3>
+                        <pre id="svg-code"></pre>
+                    </div>
+                    <div class="code-container">
+                        <h3>CSS Code <button class="copy-btn small" data-target="svg-css-code"><i class="fas fa-copy"></i> Copy</button></h3>
+                        <pre id="svg-css-code"></pre>
                     </div>
                 </div>
             </div>
@@ -1070,7 +945,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 CSS/HTML Generator Tools. All rights reserved.</p>
+        <p>&copy; 2025 CSS Generator Tools. All rights reserved. || MADE BY KAMRAN</p>
     </footer>
 
     <script src="script.js"></script>

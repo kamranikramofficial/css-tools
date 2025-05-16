@@ -37,20 +37,46 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Initialize all tools
+  // Button Animation Generator
   initButtonGenerator()
+
+  // Box Shadow Maker
   initBoxShadowMaker()
+
+  // Hover Effect Maker
   initHoverEffectMaker()
+
+  // Color Picker
   initColorPicker()
+
+  // Table Generator
   initTableGenerator()
+
+  // Form Generator
   initFormGenerator()
+
+  // Gradient Generator
   initGradientGenerator()
+
+  // Animation Generator
   initAnimationGenerator()
+
+  // Filter Generator
   initFilterGenerator()
+
+  // Transform Generator
   initTransformGenerator()
+
+  // Flexbox Generator
   initFlexboxGenerator()
+
+  // Grid Generator
   initGridGenerator()
-  initResponsiveDesign()
+
+  // Responsive Design Tool
+  initResponsiveTool()
+
+  // SVG Icon Generator
   initSvgGenerator()
 })
 
@@ -91,35 +117,40 @@ function initButtonGenerator() {
     btnBorderRadiusValue.textContent = `${btnBorderRadius.value}px`
 
     // Generate CSS code
-    let css = `.button {\n`
-    css += `  padding: ${btnPadding.value}px 24px;\n`
-    css += `  background-color: ${btnBgColor.value};\n`
-    css += `  color: ${btnTextColor.value};\n`
-    css += `  border: none;\n`
-    css += `  border-radius: ${btnBorderRadius.value}px;\n`
-    css += `  cursor: pointer;\n`
-    css += `  font-size: 16px;\n`
-    css += `  transition: all 0.3s ease;\n`
-    css += `}\n\n`
+    let css = `.button {
+  padding: ${btnPadding.value}px 24px;
+  background-color: ${btnBgColor.value};
+  color: ${btnTextColor.value};
+  border: none;
+  border-radius: ${btnBorderRadius.value}px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
 
-    css += `.button:hover {\n`
+.button:hover {`
 
     switch (btnHoverEffect.value) {
       case "scale":
-        css += `  transform: scale(1.1);\n`
+        css += `
+  transform: scale(1.1);`
         break
       case "bg-change":
-        css += `  background-color: ${btnHoverBgColor.value};\n`
+        css += `
+  background-color: ${btnHoverBgColor.value};`
         break
       case "shadow":
-        css += `  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n`
+        css += `
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);`
         break
       case "border":
-        css += `  border: 2px solid ${btnHoverBgColor.value};\n`
+        css += `
+  border: 2px solid ${btnHoverBgColor.value};`
         break
     }
 
-    css += `}`
+    css += `
+}`
 
     btnCssCode.textContent = css
 
@@ -181,9 +212,9 @@ function initBoxShadowMaker() {
     preview.style.boxShadow = shadowValue
 
     // Generate CSS code
-    let css = `.element {\n`
-    css += `  box-shadow: ${shadowValue};\n`
-    css += `}`
+    const css = `.element {
+  box-shadow: ${shadowValue};
+}`
 
     cssCode.textContent = css
   }
@@ -230,6 +261,40 @@ function initHoverEffectMaker() {
     input.addEventListener("input", updateHoverPreview)
   })
 
+  // Add hover event listeners to preview element
+  preview.addEventListener("mouseenter", () => {
+    applyHoverStyles(preview)
+  })
+
+  preview.addEventListener("mouseleave", () => {
+    resetHoverStyles(preview)
+  })
+
+  function applyHoverStyles(element) {
+    if (scaleCheck.checked) {
+      element.style.transform = `scale(${scaleValue.value})`
+    }
+
+    if (bgChangeCheck.checked) {
+      element.style.backgroundColor = bgChangeColor.value
+    }
+
+    if (textChangeCheck.checked) {
+      element.style.color = textChangeColor.value
+    }
+
+    if (shadowCheck.checked) {
+      element.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)"
+    }
+  }
+
+  function resetHoverStyles(element) {
+    element.style.transform = ""
+    element.style.backgroundColor = bgColor.value
+    element.style.color = textColor.value
+    element.style.boxShadow = ""
+  }
+
   function updateHoverPreview() {
     // Update value displays
     transitionValue.textContent = `${transition.value}s`
@@ -240,58 +305,40 @@ function initHoverEffectMaker() {
     preview.style.color = textColor.value
     preview.style.transition = `all ${transition.value}s`
 
-    // Set up hover effects for the preview
-    preview.onmouseenter = function () {
-      if (scaleCheck.checked) {
-        this.style.transform = `scale(${scaleValue.value})`
-      }
-      if (bgChangeCheck.checked) {
-        this.style.backgroundColor = bgChangeColor.value
-      }
-      if (textChangeCheck.checked) {
-        this.style.color = textChangeColor.value
-      }
-      if (shadowCheck.checked) {
-        this.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)"
-      }
-    }
-
-    preview.onmouseleave = function () {
-      this.style.transform = ""
-      this.style.backgroundColor = bgColor.value
-      this.style.color = textColor.value
-      this.style.boxShadow = ""
-    }
-
     // Generate CSS code
-    let css = `.hover-element {\n`
-    css += `  padding: 20px;\n`
-    css += `  background-color: ${bgColor.value};\n`
-    css += `  color: ${textColor.value};\n`
-    css += `  border-radius: 5px;\n`
-    css += `  cursor: pointer;\n`
-    css += `  transition: all ${transition.value}s;\n`
-    css += `}\n\n`
+    let css = `.hover-element {
+  padding: 20px;
+  background-color: ${bgColor.value};
+  color: ${textColor.value};
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all ${transition.value}s;
+}
 
-    css += `.hover-element:hover {\n`
+.hover-element:hover {`
 
     if (scaleCheck.checked) {
-      css += `  transform: scale(${scaleValue.value});\n`
+      css += `
+  transform: scale(${scaleValue.value});`
     }
 
     if (bgChangeCheck.checked) {
-      css += `  background-color: ${bgChangeColor.value};\n`
+      css += `
+  background-color: ${bgChangeColor.value};`
     }
 
     if (textChangeCheck.checked) {
-      css += `  color: ${textChangeColor.value};\n`
+      css += `
+  color: ${textChangeColor.value};`
     }
 
     if (shadowCheck.checked) {
-      css += `  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);\n`
+      css += `
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);`
     }
 
-    css += `}`
+    css += `
+}`
 
     cssCode.textContent = css
 
@@ -504,36 +551,42 @@ function initTableGenerator() {
     tableHtml += "  </tbody>\n</table>"
 
     // Generate CSS
-    let tableCss = `.custom-table {\n`
-    tableCss += `  border-collapse: collapse;\n`
-    tableCss += `  width: 100%;\n`
-    tableCss += `}\n\n`
+    let tableCss = `.custom-table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    tableCss += `.custom-table th, .custom-table td {\n`
-    tableCss += `  padding: ${cellPadding}px;\n`
+.custom-table th, .custom-table td {
+  padding: ${cellPadding}px;`
 
     if (borderWidth > 0) {
-      tableCss += `  border: ${borderWidth}px solid ${borderColor};\n`
+      tableCss += `
+  border: ${borderWidth}px solid ${borderColor};`
     }
 
-    tableCss += `}\n\n`
+    tableCss += `
+}
 
-    tableCss += `.custom-table th {\n`
-    tableCss += `  background-color: #f2f2f2;\n`
-    tableCss += `  font-weight: bold;\n`
-    tableCss += `  text-align: left;\n`
-    tableCss += `}\n`
+.custom-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+}`
 
     if (isStriped) {
-      tableCss += `\n.custom-table tbody tr:nth-child(even) {\n`
-      tableCss += `  background-color: #f9f9f9;\n`
-      tableCss += `}\n`
+      tableCss += `
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}`
     }
 
     if (hasHover) {
-      tableCss += `\n.custom-table tbody tr:hover {\n`
-      tableCss += `  background-color: #f5f5f5;\n`
-      tableCss += `}\n`
+      tableCss += `
+
+.custom-table tbody tr:hover {
+  background-color: #f5f5f5;
+}`
     }
 
     // Update preview and code
@@ -618,19 +671,19 @@ function initFormGenerator() {
     fieldDiv.className = "form-field"
 
     fieldDiv.innerHTML = `
-            <select class="field-type">
-                <option value="text">Text Input</option>
-                <option value="email">Email</option>
-                <option value="password">Password</option>
-                <option value="textarea">Textarea</option>
-                <option value="checkbox">Checkbox</option>
-                <option value="radio">Radio Buttons</option>
-                <option value="select">Dropdown</option>
-            </select>
-            <input type="text" class="field-label" placeholder="Label" value="Field">
-            <input type="text" class="field-placeholder" placeholder="Placeholder" value="Enter value">
-            <button class="remove-field"><i class="fas fa-times"></i></button>
-        `
+        <select class="field-type">
+            <option value="text">Text Input</option>
+            <option value="email">Email</option>
+            <option value="password">Password</option>
+            <option value="textarea">Textarea</option>
+            <option value="checkbox">Checkbox</option>
+            <option value="radio">Radio Buttons</option>
+            <option value="select">Dropdown</option>
+        </select>
+        <input type="text" class="field-label" placeholder="Label" value="Field">
+        <input type="text" class="field-placeholder" placeholder="Placeholder" value="Enter value">
+        <button class="remove-field"><i class="fas fa-times"></i></button>
+    `
 
     formFields.appendChild(fieldDiv)
 
@@ -734,110 +787,116 @@ function initFormGenerator() {
     formHtml += `</form>`
 
     // Generate CSS
-    let formCss = `.custom-form {\n`
-    formCss += `  max-width: 500px;\n`
-    formCss += `  margin: 0 auto;\n`
-    formCss += `  padding: 20px;\n`
-    formCss += `  background-color: #f9f9f9;\n`
-    formCss += `  border-radius: 8px;\n`
-    formCss += `  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n`
-    formCss += `}\n\n`
+    let formCss = `.custom-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
-    formCss += `.custom-form h2 {\n`
-    formCss += `  margin-top: 0;\n`
-    formCss += `  margin-bottom: 20px;\n`
-    formCss += `  text-align: center;\n`
-    formCss += `  color: #333;\n`
-    formCss += `}\n\n`
+.custom-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
 
-    formCss += `.form-group {\n`
-    formCss += `  margin-bottom: 15px;\n`
-    formCss += `}\n\n`
+.form-group {
+  margin-bottom: 15px;
+}`
 
     if (layout === "horizontal") {
-      formCss += `.form-group {\n`
-      formCss += `  display: flex;\n`
-      formCss += `  align-items: center;\n`
-      formCss += `}\n\n`
+      formCss += `
 
-      formCss += `.form-group label {\n`
-      formCss += `  width: 30%;\n`
-      formCss += `  margin-right: 10px;\n`
-      formCss += `}\n\n`
+.form-group {
+  display: flex;
+  align-items: center;
+}
 
-      formCss += `.form-group input, .form-group select, .form-group textarea {\n`
-      formCss += `  width: 70%;\n`
-      formCss += `}\n\n`
+.form-group label {
+  width: 30%;
+  margin-right: 10px;
+}
 
-      formCss += `.form-group.checkbox {\n`
-      formCss += `  display: flex;\n`
-      formCss += `  align-items: center;\n`
-      formCss += `}\n\n`
+.form-group input, .form-group select, .form-group textarea {
+  width: 70%;
+}
 
-      formCss += `.form-group.checkbox input {\n`
-      formCss += `  width: auto;\n`
-      formCss += `  margin-right: 10px;\n`
-      formCss += `}\n\n`
+.form-group.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.form-group.checkbox input {
+  width: auto;
+  margin-right: 10px;
+}`
     } else {
-      formCss += `.form-group label {\n`
-      formCss += `  display: block;\n`
-      formCss += `  margin-bottom: 5px;\n`
-      formCss += `  font-weight: 500;\n`
-      formCss += `}\n\n`
+      formCss += `
 
-      formCss += `.form-group.checkbox {\n`
-      formCss += `  display: flex;\n`
-      formCss += `  align-items: center;\n`
-      formCss += `}\n\n`
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
 
-      formCss += `.form-group.checkbox label {\n`
-      formCss += `  margin-bottom: 0;\n`
-      formCss += `  margin-left: 10px;\n`
-      formCss += `}\n\n`
+.form-group.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.form-group.checkbox label {
+  margin-bottom: 0;
+  margin-left: 10px;
+}`
     }
 
-    formCss += `.radio-group {\n`
-    formCss += `  display: flex;\n`
-    formCss += `  align-items: center;\n`
-    formCss += `  margin-bottom: 5px;\n`
-    formCss += `}\n\n`
+    formCss += `
 
-    formCss += `.radio-group input {\n`
-    formCss += `  margin-right: 10px;\n`
-    formCss += `}\n\n`
+.radio-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
 
-    formCss += `.custom-form input[type="text"],\n`
-    formCss += `.custom-form input[type="email"],\n`
-    formCss += `.custom-form input[type="password"],\n`
-    formCss += `.custom-form textarea,\n`
-    formCss += `.custom-form select {\n`
-    formCss += `  width: 100%;\n`
-    formCss += `  padding: 10px;\n`
-    formCss += `  border: 1px solid #ddd;\n`
-    formCss += `  border-radius: 4px;\n`
-    formCss += `  font-size: 16px;\n`
-    formCss += `}\n\n`
+.radio-group input {
+  margin-right: 10px;
+}
 
-    formCss += `.custom-form textarea {\n`
-    formCss += `  min-height: 100px;\n`
-    formCss += `  resize: vertical;\n`
-    formCss += `}\n\n`
+.custom-form input[type="text"],
+.custom-form input[type="email"],
+.custom-form input[type="password"],
+.custom-form textarea,
+.custom-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
 
-    formCss += `.submit-btn {\n`
-    formCss += `  background-color: ${buttonColor};\n`
-    formCss += `  color: white;\n`
-    formCss += `  border: none;\n`
-    formCss += `  padding: 12px 20px;\n`
-    formCss += `  border-radius: 4px;\n`
-    formCss += `  cursor: pointer;\n`
-    formCss += `  font-size: 16px;\n`
-    formCss += `  width: 100%;\n`
-    formCss += `  transition: background-color 0.3s;\n`
-    formCss += `}\n\n`
+.custom-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
 
-    formCss += `.submit-btn:hover {\n`
-    formCss += `  background-color: ${adjustColor(buttonColor, -20)};\n`
-    formCss += `}`
+.submit-btn {
+  background-color: ${buttonColor};
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: ${adjustColor(buttonColor, -20)};
+}`
 
     // Update preview and code
     preview.innerHTML = formHtml
@@ -959,196 +1018,239 @@ function initFormGenerator() {
 // Gradient Generator
 function initGradientGenerator() {
   const gradientType = document.getElementById("gradient-type")
-  const linearControls = document.getElementById("linear-controls")
-  const radialControls = document.getElementById("radial-controls")
-  const gradientAngle = document.getElementById("gradient-angle")
-  const gradientAngleValue = document.getElementById("gradient-angle-value")
-  const radialShape = document.getElementById("radial-shape")
-  const radialPosition = document.getElementById("radial-position")
-  const addStopBtn = document.getElementById("add-stop")
-  const gradientStops = document.getElementById("gradient-stops")
+  const linearAngleGroup = document.getElementById("linear-angle-group")
+  const radialPositionGroup = document.getElementById("radial-position-group")
+  const angle = document.getElementById("gradient-angle")
+  const position = document.getElementById("gradient-position")
+  const color1 = document.getElementById("gradient-color-1")
+  const color2 = document.getElementById("gradient-color-2")
+  const color3 = document.getElementById("gradient-color-3")
+  const useColor3 = document.getElementById("gradient-use-color-3")
+
   const preview = document.getElementById("gradient-preview")
   const cssCode = document.getElementById("gradient-css-code")
 
-  // Toggle controls based on gradient type
+  const angleValue = document.getElementById("gradient-angle-value")
+
+  // Show/hide controls based on gradient type
   gradientType.addEventListener("change", () => {
     if (gradientType.value === "linear") {
-      linearControls.style.display = "block"
-      radialControls.style.display = "none"
+      linearAngleGroup.style.display = "block"
+      radialPositionGroup.style.display = "none"
     } else {
-      linearControls.style.display = "none"
-      radialControls.style.display = "block"
+      linearAngleGroup.style.display = "none"
+      radialPositionGroup.style.display = "block"
     }
     updateGradientPreview()
   })
 
-  // Update angle value display
-  gradientAngle.addEventListener("input", () => {
-    gradientAngleValue.textContent = `${gradientAngle.value}deg`
-    updateGradientPreview()
+  // Update preview and code on input change
+  ;[angle, position, color1, color2, color3, useColor3].forEach((input) => {
+    input.addEventListener("input", updateGradientPreview)
   })
 
-  // Add new color stop
-  addStopBtn.addEventListener("click", () => {
-    const stopDiv = document.createElement("div")
-    stopDiv.className = "gradient-stop"
-
-    stopDiv.innerHTML = `
-            <input type="color" class="stop-color" value="#4a6ee0">
-            <input type="range" class="stop-position" min="0" max="100" value="50">
-            <span class="stop-position-value">50%</span>
-            <button class="remove-stop"><i class="fas fa-times"></i></button>
-        `
-
-    const stops = gradientStops.querySelectorAll(".gradient-stop")
-    stops[stops.length - 1].insertAdjacentElement("afterend", stopDiv)
-
-    // Add event listeners
-    const colorInput = stopDiv.querySelector(".stop-color")
-    const positionInput = stopDiv.querySelector(".stop-position")
-    const positionValue = stopDiv.querySelector(".stop-position-value")
-    const removeBtn = stopDiv.querySelector(".remove-stop")
-
-    colorInput.addEventListener("input", updateGradientPreview)
-
-    positionInput.addEventListener("input", () => {
-      positionValue.textContent = `${positionInput.value}%`
-      updateGradientPreview()
-    })
-
-    removeBtn.addEventListener("click", () => {
-      if (gradientStops.querySelectorAll(".gradient-stop").length > 2) {
-        stopDiv.remove()
-        updateGradientPreview()
-      }
-    })
-
-    updateGradientPreview()
-  })
-
-  // Setup initial color stop events
-  const initialStops = gradientStops.querySelectorAll(".gradient-stop")
-  initialStops.forEach((stopDiv) => {
-    const colorInput = stopDiv.querySelector(".stop-color")
-    const positionInput = stopDiv.querySelector(".stop-position")
-    const positionValue = stopDiv.querySelector(".stop-position-value")
-    const removeBtn = stopDiv.querySelector(".remove-stop")
-
-    colorInput.addEventListener("input", updateGradientPreview)
-
-    positionInput.addEventListener("input", () => {
-      positionValue.textContent = `${positionInput.value}%`
-      updateGradientPreview()
-    })
-
-    removeBtn.addEventListener("click", () => {
-      if (gradientStops.querySelectorAll(".gradient-stop").length > 2) {
-        stopDiv.remove()
-        updateGradientPreview()
-      }
-    })
-  })
-
-  // Add events for radial controls
-  ;[radialShape, radialPosition].forEach((input) => {
-    input.addEventListener("change", updateGradientPreview)
+  angle.addEventListener("input", () => {
+    angleValue.textContent = `${angle.value}deg`
   })
 
   function updateGradientPreview() {
-    // Get all stops
-    const stops = gradientStops.querySelectorAll(".gradient-stop")
-    const colorStops = []
-
-    stops.forEach((stop) => {
-      const color = stop.querySelector(".stop-color").value
-      const position = stop.querySelector(".stop-position").value
-      colorStops.push(`${color} ${position}%`)
-    })
-
-    let gradientCSS = ""
+    let gradientValue
 
     if (gradientType.value === "linear") {
-      gradientCSS = `linear-gradient(${gradientAngle.value}deg, ${colorStops.join(", ")})`
+      gradientValue = `linear-gradient(${angle.value}deg, ${color1.value}`
+      gradientValue += `, ${color2.value}`
+
+      if (useColor3.checked) {
+        gradientValue += `, ${color3.value}`
+      }
+
+      gradientValue += ")"
     } else {
-      const shape = radialShape.value
-      const position = radialPosition.value
-      gradientCSS = `radial-gradient(${shape} at ${position}, ${colorStops.join(", ")})`
+      gradientValue = `radial-gradient(circle at ${position.value}, ${color1.value}`
+      gradientValue += `, ${color2.value}`
+
+      if (useColor3.checked) {
+        gradientValue += `, ${color3.value}`
+      }
+
+      gradientValue += ")"
     }
 
     // Update preview
-    preview.style.backgroundImage = gradientCSS
+    preview.style.background = gradientValue
 
     // Generate CSS code
-    const css = `.element {\n  background-image: ${gradientCSS};\n}`
+    const css = `.gradient-element {
+  background: ${gradientValue};
+}`
+
     cssCode.textContent = css
   }
 
-  // Initialize gradient
+  // Initialize preview
   updateGradientPreview()
 }
 
 // Animation Generator
 function initAnimationGenerator() {
   const animationName = document.getElementById("animation-name")
-  const animationDuration = document.getElementById("animation-duration")
-  const animationDurationValue = document.getElementById("animation-duration-value")
-  const animationTiming = document.getElementById("animation-timing")
-  const animationDelay = document.getElementById("animation-delay")
-  const animationDelayValue = document.getElementById("animation-delay-value")
-  const animationIteration = document.getElementById("animation-iteration")
-  const animationDirection = document.getElementById("animation-direction")
-  const animationFill = document.getElementById("animation-fill")
+  const duration = document.getElementById("animation-duration")
+  const timing = document.getElementById("animation-timing")
+  const delay = document.getElementById("animation-delay")
+  const iteration = document.getElementById("animation-iteration")
+  const direction = document.getElementById("animation-direction")
+  const fill = document.getElementById("animation-fill")
   const animationType = document.getElementById("animation-type")
 
   const preview = document.getElementById("animation-preview")
+  const playBtn = document.getElementById("play-animation")
   const cssCode = document.getElementById("animation-css-code")
 
-  const playBtn = document.getElementById("play-animation")
-  const pauseBtn = document.getElementById("pause-animation")
+  const durationValue = document.getElementById("animation-duration-value")
+  const delayValue = document.getElementById("animation-delay-value")
 
-  // Update value displays
-  animationDuration.addEventListener("input", () => {
-    animationDurationValue.textContent = `${animationDuration.value}s`
+  // Update value displays on input change
+  duration.addEventListener("input", () => {
+    durationValue.textContent = `${duration.value}s`
     updateAnimationPreview()
   })
 
-  animationDelay.addEventListener("input", () => {
-    animationDelayValue.textContent = `${animationDelay.value}s`
+  delay.addEventListener("input", () => {
+    delayValue.textContent = `${delay.value}s`
     updateAnimationPreview()
   })
 
-  // Update animation on input change
-  ;[animationName, animationTiming, animationIteration, animationDirection, animationFill, animationType].forEach(
-    (input) => {
-      input.addEventListener("change", updateAnimationPreview)
-    },
-  )
+  // Play animation on button click
+  playBtn.addEventListener("click", playAnimation)
 
-  // Play/Pause buttons
-  playBtn.addEventListener("click", () => {
-    preview.style.animationPlayState = "running"
+  // Update preview and code on input change
+  ;[animationName, timing, iteration, direction, fill, animationType].forEach((input) => {
+    input.addEventListener("change", updateAnimationPreview)
+    input.addEventListener("input", updateAnimationPreview)
   })
 
-  pauseBtn.addEventListener("click", () => {
-    preview.style.animationPlayState = "paused"
-  })
+  function playAnimation() {
+    // Reset animation
+    preview.style.animation = "none"
+
+    // Trigger reflow
+    void preview.offsetWidth
+
+    // Apply animation
+    const animationValue = `${animationName.value} ${duration.value}s ${timing.value} ${delay.value}s ${iteration.value} ${direction.value} ${fill.value}`
+    preview.style.animation = animationValue
+
+    // Add keyframes dynamically
+    addKeyframes()
+  }
+
+  function addKeyframes() {
+    // Remove any existing animation style
+    const existingStyle = document.getElementById("animation-keyframes-style")
+    if (existingStyle) {
+      document.head.removeChild(existingStyle)
+    }
+
+    // Create new style element with keyframes
+    const style = document.createElement("style")
+    style.id = "animation-keyframes-style"
+
+    let keyframes = `@keyframes ${animationName.value} {`
+
+    switch (animationType.value) {
+      case "fade":
+        keyframes += `
+  0% { opacity: 0; }
+  100% { opacity: 1; }`
+        break
+
+      case "slide":
+        keyframes += `
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }`
+        break
+
+      case "rotate":
+        keyframes += `
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }`
+        break
+
+      case "scale":
+        keyframes += `
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }`
+        break
+
+      case "bounce":
+        keyframes += `
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-30px); }
+  60% { transform: translateY(-15px); }`
+        break
+
+      case "pulse":
+        keyframes += `
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }`
+        break
+    }
+
+    keyframes += `
+}`
+
+    style.textContent = keyframes
+    document.head.appendChild(style)
+  }
 
   function updateAnimationPreview() {
-    const name = animationName.value
-    const duration = animationDuration.value
-    const timing = animationTiming.value
-    const delay = animationDelay.value
-    const iteration = animationIteration.value
-    const direction = animationDirection.value
-    const fill = animationFill.value
-    const type = animationType.value
+    // Generate CSS code
+    let css = `@keyframes ${animationName.value} {`
 
-    // Generate keyframes based on animation type
-    let keyframes = ""
+    switch (animationType.value) {
+      case "fade":
+        css += `
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }`
+        break
 
-    switch (type) {
+      case "slide":
+        css += `
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }`
+        break
+
+      case "rotate":
+        css += `
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }`
+        break
+
+      case "scale":
+        css += `
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }`
+        break
+
       case "bounce":
-        keyframes = `@keyframes ${name} {
+        css += `
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
   }
@@ -1157,45 +1259,11 @@ function initAnimationGenerator() {
   }
   60% {
     transform: translateY(-15px);
-  }
-}`
-        break
-
-      case "fade":
-        keyframes = `@keyframes ${name} {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}`
-        break
-
-      case "slide":
-        keyframes = `@keyframes ${name} {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}`
-        break
-
-      case "rotate":
-        keyframes = `@keyframes ${name} {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}`
+  }`
         break
 
       case "pulse":
-        keyframes = `@keyframes ${name} {
+        css += `
   0% {
     transform: scale(1);
   }
@@ -1204,670 +1272,904 @@ function initAnimationGenerator() {
   }
   100% {
     transform: scale(1);
-  }
-}`
-        break
-
-      case "shake":
-        keyframes = `@keyframes ${name} {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translateX(-10px);
-  }
-  20%, 40%, 60%, 80% {
-    transform: translateX(10px);
-  }
-}`
+  }`
         break
     }
 
-    // Generate CSS
-    const css = `${keyframes}
+    css += `
+}
 
 .animated-element {
-  animation-name: ${name};
-  animation-duration: ${duration}s;
-  animation-timing-function: ${timing};
-  animation-delay: ${delay}s;
-  animation-iteration-count: ${iteration};
-  animation-direction: ${direction};
-  animation-fill-mode: ${fill};
+  animation: ${animationName.value} ${duration.value}s ${timing.value} ${delay.value}s ${iteration.value} ${direction.value} ${fill.value};
 }`
 
-    // Update code
     cssCode.textContent = css
 
-    // Apply animation to preview
-    preview.style.animation = `${name} ${duration}s ${timing} ${delay}s ${iteration} ${direction} ${fill}`
-
-    // Reset animation
-    preview.style.animation = "none"
-    preview.offsetHeight // Trigger reflow
-    preview.style.animation = `${name} ${duration}s ${timing} ${delay}s ${iteration} ${direction} ${fill}`
+    // Add keyframes to document
+    addKeyframes()
   }
 
-  // Initialize animation
+  // Initialize preview
   updateAnimationPreview()
 }
 
-// Filter Effects Generator
+// Filter Generator
 function initFilterGenerator() {
-  const blurInput = document.getElementById("filter-blur")
-  const blurValue = document.getElementById("filter-blur-value")
-  const brightnessInput = document.getElementById("filter-brightness")
-  const brightnessValue = document.getElementById("filter-brightness-value")
-  const contrastInput = document.getElementById("filter-contrast")
-  const contrastValue = document.getElementById("filter-contrast-value")
-  const grayscaleInput = document.getElementById("filter-grayscale")
-  const grayscaleValue = document.getElementById("filter-grayscale-value")
-  const hueRotateInput = document.getElementById("filter-hue-rotate")
-  const hueRotateValue = document.getElementById("filter-hue-rotate-value")
-  const invertInput = document.getElementById("filter-invert")
-  const invertValue = document.getElementById("filter-invert-value")
-  const saturateInput = document.getElementById("filter-saturate")
-  const saturateValue = document.getElementById("filter-saturate-value")
-  const sepiaInput = document.getElementById("filter-sepia")
-  const sepiaValue = document.getElementById("filter-sepia-value")
+  const blur = document.getElementById("filter-blur")
+  const brightness = document.getElementById("filter-brightness")
+  const contrast = document.getElementById("filter-contrast")
+  const grayscale = document.getElementById("filter-grayscale")
+  const hueRotate = document.getElementById("filter-hue-rotate")
+  const invert = document.getElementById("filter-invert")
+  const opacity = document.getElementById("filter-opacity")
+  const saturate = document.getElementById("filter-saturate")
+  const sepia = document.getElementById("filter-sepia")
+  const resetBtn = document.getElementById("reset-filters")
 
-  const dropShadowCheck = document.getElementById("filter-drop-shadow")
-  const dropShadowControls = document.getElementById("drop-shadow-controls")
-  const shadowHInput = document.getElementById("filter-shadow-h")
-  const shadowHValue = document.getElementById("filter-shadow-h-value")
-  const shadowVInput = document.getElementById("filter-shadow-v")
-  const shadowVValue = document.getElementById("filter-shadow-v-value")
-  const shadowBlurInput = document.getElementById("filter-shadow-blur")
-  const shadowBlurValue = document.getElementById("filter-shadow-blur-value")
-  const shadowColorInput = document.getElementById("filter-shadow-color")
-
-  const imagePreview = document.getElementById("filter-preview")
-  const textPreview = document.getElementById("filter-text-preview")
+  const preview = document.getElementById("filter-preview")
   const cssCode = document.getElementById("filter-css-code")
 
-  // Toggle drop shadow controls
-  dropShadowCheck.addEventListener("change", () => {
-    dropShadowControls.style.display = dropShadowCheck.checked ? "block" : "none"
+  const blurValue = document.getElementById("filter-blur-value")
+  const brightnessValue = document.getElementById("filter-brightness-value")
+  const contrastValue = document.getElementById("filter-contrast-value")
+  const grayscaleValue = document.getElementById("filter-grayscale-value")
+  const hueRotateValue = document.getElementById("filter-hue-rotate-value")
+  const invertValue = document.getElementById("filter-invert-value")
+  const opacityValue = document.getElementById("filter-opacity-value")
+  const saturateValue = document.getElementById("filter-saturate-value")
+  const sepiaValue = document.getElementById("filter-sepia-value")
+
+  // Update value displays on input change
+  blur.addEventListener("input", () => {
+    blurValue.textContent = `${blur.value}px`
     updateFilterPreview()
   })
 
-  // Update value displays
-  blurInput.addEventListener("input", () => {
-    blurValue.textContent = `${blurInput.value}px`
+  brightness.addEventListener("input", () => {
+    brightnessValue.textContent = `${brightness.value}%`
     updateFilterPreview()
   })
 
-  brightnessInput.addEventListener("input", () => {
-    brightnessValue.textContent = `${brightnessInput.value}%`
+  contrast.addEventListener("input", () => {
+    contrastValue.textContent = `${contrast.value}%`
     updateFilterPreview()
   })
 
-  contrastInput.addEventListener("input", () => {
-    contrastValue.textContent = `${contrastInput.value}%`
+  grayscale.addEventListener("input", () => {
+    grayscaleValue.textContent = `${grayscale.value}%`
     updateFilterPreview()
   })
 
-  grayscaleInput.addEventListener("input", () => {
-    grayscaleValue.textContent = `${grayscaleInput.value}%`
+  hueRotate.addEventListener("input", () => {
+    hueRotateValue.textContent = `${hueRotate.value}deg`
     updateFilterPreview()
   })
 
-  hueRotateInput.addEventListener("input", () => {
-    hueRotateValue.textContent = `${hueRotateInput.value}deg`
+  invert.addEventListener("input", () => {
+    invertValue.textContent = `${invert.value}%`
     updateFilterPreview()
   })
 
-  invertInput.addEventListener("input", () => {
-    invertValue.textContent = `${invertInput.value}%`
+  opacity.addEventListener("input", () => {
+    opacityValue.textContent = `${opacity.value}%`
     updateFilterPreview()
   })
 
-  saturateInput.addEventListener("input", () => {
-    saturateValue.textContent = `${saturateInput.value}%`
+  saturate.addEventListener("input", () => {
+    saturateValue.textContent = `${saturate.value}%`
     updateFilterPreview()
   })
 
-  sepiaInput.addEventListener("input", () => {
-    sepiaValue.textContent = `${sepiaInput.value}%`
+  sepia.addEventListener("input", () => {
+    sepiaValue.textContent = `${sepia.value}%`
     updateFilterPreview()
   })
 
-  shadowHInput.addEventListener("input", () => {
-    shadowHValue.textContent = `${shadowHInput.value}px`
-    updateFilterPreview()
-  })
+  // Reset filters on button click
+  resetBtn.addEventListener("click", resetFilters)
 
-  shadowVInput.addEventListener("input", () => {
-    shadowVValue.textContent = `${shadowVInput.value}px`
-    updateFilterPreview()
-  })
+  function resetFilters() {
+    blur.value = 0
+    brightness.value = 100
+    contrast.value = 100
+    grayscale.value = 0
+    hueRotate.value = 0
+    invert.value = 0
+    opacity.value = 100
+    saturate.value = 100
+    sepia.value = 0
 
-  shadowBlurInput.addEventListener("input", () => {
-    shadowBlurValue.textContent = `${shadowBlurInput.value}px`
-    updateFilterPreview()
-  })
+    blurValue.textContent = "0px"
+    brightnessValue.textContent = "100%"
+    contrastValue.textContent = "100%"
+    grayscaleValue.textContent = "0%"
+    hueRotateValue.textContent = "0deg"
+    invertValue.textContent = "0%"
+    opacityValue.textContent = "100%"
+    saturateValue.textContent = "100%"
+    sepiaValue.textContent = "0%"
 
-  // Update filter on input change
-  ;[
-    blurInput,
-    brightnessInput,
-    contrastInput,
-    grayscaleInput,
-    hueRotateInput,
-    invertInput,
-    saturateInput,
-    sepiaInput,
-    shadowHInput,
-    shadowVInput,
-    shadowBlurInput,
-    shadowColorInput,
-  ].forEach((input) => {
-    input.addEventListener("input", updateFilterPreview)
-  })
+    updateFilterPreview()
+  }
 
   function updateFilterPreview() {
-    let filterValue = `blur(${blurInput.value}px) brightness(${brightnessInput.value}%) contrast(${contrastInput.value}%) grayscale(${grayscaleInput.value}%) hue-rotate(${hueRotateInput.value}deg) invert(${invertInput.value}%) saturate(${saturateInput.value}%) sepia(${sepiaInput.value}%)`
+    // Create filter value
+    let filterValue = ""
 
-    if (dropShadowCheck.checked) {
-      const dropShadowValue = `drop-shadow(${shadowHInput.value}px ${shadowVInput.value}px ${shadowBlurInput.value}px ${shadowColorInput.value})`
-      filterValue += ` ${dropShadowValue}`
+    if (Number.parseInt(blur.value) > 0) {
+      filterValue += `blur(${blur.value}px) `
+    }
+
+    if (Number.parseInt(brightness.value) !== 100) {
+      filterValue += `brightness(${brightness.value}%) `
+    }
+
+    if (Number.parseInt(contrast.value) !== 100) {
+      filterValue += `contrast(${contrast.value}%) `
+    }
+
+    if (Number.parseInt(grayscale.value) > 0) {
+      filterValue += `grayscale(${grayscale.value}%) `
+    }
+
+    if (Number.parseInt(hueRotate.value) > 0) {
+      filterValue += `hue-rotate(${hueRotate.value}deg) `
+    }
+
+    if (Number.parseInt(invert.value) > 0) {
+      filterValue += `invert(${invert.value}%) `
+    }
+
+    if (Number.parseInt(opacity.value) !== 100) {
+      filterValue += `opacity(${opacity.value}%) `
+    }
+
+    if (Number.parseInt(saturate.value) !== 100) {
+      filterValue += `saturate(${saturate.value}%) `
+    }
+
+    if (Number.parseInt(sepia.value) > 0) {
+      filterValue += `sepia(${sepia.value}%) `
     }
 
     // Update preview
-    imagePreview.style.filter = filterValue
-    textPreview.style.filter = filterValue
+    preview.style.filter = filterValue.trim()
 
     // Generate CSS code
-    const css = `.element {\n  filter: ${filterValue};\n}`
+    const css = `.filtered-element {
+  filter: ${filterValue.trim()};
+}`
+
     cssCode.textContent = css
   }
 
-  // Initialize filter
+  // Initialize preview
   updateFilterPreview()
 }
 
 // Transform Generator
 function initTransformGenerator() {
-  const scaleXInput = document.getElementById("scale-x")
-  const scaleXValue = document.getElementById("scale-x-value")
-  const scaleYInput = document.getElementById("scale-y")
-  const scaleYValue = document.getElementById("scale-y-value")
-  const rotateDegInput = document.getElementById("rotate-deg")
-  const rotateDegValue = document.getElementById("rotate-deg-value")
-  const translateXInput = document.getElementById("translate-x")
-  const translateXValue = document.getElementById("translate-x-value")
-  const translateYInput = document.getElementById("translate-y")
-  const translateYValue = document.getElementById("translate-y-value")
-  const skewXInput = document.getElementById("skew-x")
-  const skewXValue = document.getElementById("skew-x-value")
-  const skewYInput = document.getElementById("skew-y")
-  const skewYValue = document.getElementById("skew-y-value")
-  const transformOriginSelect = document.getElementById("transform-origin")
-  const resetTransformBtn = document.getElementById("reset-transform")
+  const scaleX = document.getElementById("transform-scale-x")
+  const scaleY = document.getElementById("transform-scale-y")
+  const rotate = document.getElementById("transform-rotate")
+  const translateX = document.getElementById("transform-translate-x")
+  const translateY = document.getElementById("transform-translate-y")
+  const skewX = document.getElementById("transform-skew-x")
+  const skewY = document.getElementById("transform-skew-y")
+  const origin = document.getElementById("transform-origin")
+  const resetBtn = document.getElementById("reset-transform")
 
   const preview = document.getElementById("transform-preview")
   const cssCode = document.getElementById("transform-css-code")
 
-  // Update value displays
-  scaleXInput.addEventListener("input", () => {
-    scaleXValue.textContent = scaleXInput.value
+  const scaleXValue = document.getElementById("transform-scale-x-value")
+  const scaleYValue = document.getElementById("transform-scale-y-value")
+  const rotateValue = document.getElementById("transform-rotate-value")
+  const translateXValue = document.getElementById("transform-translate-x-value")
+  const translateYValue = document.getElementById("transform-translate-y-value")
+  const skewXValue = document.getElementById("transform-skew-x-value")
+  const skewYValue = document.getElementById("transform-skew-y-value")
+
+  // Update value displays on input change
+  scaleX.addEventListener("input", () => {
+    scaleXValue.textContent = scaleX.value
     updateTransformPreview()
   })
 
-  scaleYInput.addEventListener("input", () => {
-    scaleYValue.textContent = scaleYInput.value
+  scaleY.addEventListener("input", () => {
+    scaleYValue.textContent = scaleY.value
     updateTransformPreview()
   })
 
-  rotateDegInput.addEventListener("input", () => {
-    rotateDegValue.textContent = `${rotateDegInput.value}deg`
+  rotate.addEventListener("input", () => {
+    rotateValue.textContent = `${rotate.value}deg`
     updateTransformPreview()
   })
 
-  translateXInput.addEventListener("input", () => {
-    translateXValue.textContent = `${translateXInput.value}px`
+  translateX.addEventListener("input", () => {
+    translateXValue.textContent = `${translateX.value}px`
     updateTransformPreview()
   })
 
-  translateYInput.addEventListener("input", () => {
-    translateYValue.textContent = `${translateYInput.value}px`
+  translateY.addEventListener("input", () => {
+    translateYValue.textContent = `${translateY.value}px`
     updateTransformPreview()
   })
 
-  skewXInput.addEventListener("input", () => {
-    skewXValue.textContent = `${skewXInput.value}deg`
+  skewX.addEventListener("input", () => {
+    skewXValue.textContent = `${skewX.value}deg`
     updateTransformPreview()
   })
 
-  skewYInput.addEventListener("input", () => {
-    skewYValue.textContent = `${skewYInput.value}deg`
+  skewY.addEventListener("input", () => {
+    skewYValue.textContent = `${skewY.value}deg`
     updateTransformPreview()
   })
 
-  transformOriginSelect.addEventListener("change", updateTransformPreview)
+  origin.addEventListener("change", updateTransformPreview)
 
-  // Reset transform
-  resetTransformBtn.addEventListener("click", () => {
-    scaleXInput.value = 1
-    scaleYInput.value = 1
-    rotateDegInput.value = 0
-    translateXInput.value = 0
-    translateYInput.value = 0
-    skewXInput.value = 0
-    skewYInput.value = 0
-    transformOriginSelect.value = "center center"
+  // Reset transform on button click
+  resetBtn.addEventListener("click", resetTransform)
+
+  function resetTransform() {
+    scaleX.value = 1
+    scaleY.value = 1
+    rotate.value = 0
+    translateX.value = 0
+    translateY.value = 0
+    skewX.value = 0
+    skewY.value = 0
+    origin.value = "center"
 
     scaleXValue.textContent = "1"
     scaleYValue.textContent = "1"
-    rotateDegValue.textContent = "0deg"
+    rotateValue.textContent = "0deg"
     translateXValue.textContent = "0px"
     translateYValue.textContent = "0px"
     skewXValue.textContent = "0deg"
     skewYValue.textContent = "0deg"
 
     updateTransformPreview()
-  })
+  }
 
   function updateTransformPreview() {
-    const scaleX = scaleXInput.value
-    const scaleY = scaleYInput.value
-    const rotate = rotateDegInput.value
-    const translateX = translateXInput.value
-    const translateY = translateYInput.value
-    const skewX = skewXInput.value
-    const skewY = skewYInput.value
-    const origin = transformOriginSelect.value
+    // Create transform value
+    let transformValue = ""
 
-    // Build transform value
-    let transform = ""
-    if (scaleX !== "1" || scaleY !== "1") {
-      transform += `scale(${scaleX}, ${scaleY}) `
+    if (scaleX.value !== "1" || scaleY.value !== "1") {
+      transformValue += `scale(${scaleX.value}, ${scaleY.value}) `
     }
-    if (rotate !== "0") {
-      transform += `rotate(${rotate}deg) `
+
+    if (rotate.value !== "0") {
+      transformValue += `rotate(${rotate.value}deg) `
     }
-    if (translateX !== "0" || translateY !== "0") {
-      transform += `translate(${translateX}px, ${translateY}px) `
+
+    if (translateX.value !== "0" || translateY.value !== "0") {
+      transformValue += `translate(${translateX.value}px, ${translateY.value}px) `
     }
-    if (skewX !== "0" || skewY !== "0") {
-      transform += `skew(${skewX}deg, ${skewY}deg) `
+
+    if (skewX.value !== "0" || skewY.value !== "0") {
+      transformValue += `skew(${skewX.value}deg, ${skewY.value}deg) `
     }
 
     // Update preview
-    preview.style.transform = transform.trim()
-    preview.style.transformOrigin = origin
+    preview.style.transform = transformValue.trim()
+    preview.style.transformOrigin = origin.value
 
     // Generate CSS code
-    let css = `.element {\n`
-    if (transform.trim()) {
-      css += `  transform: ${transform.trim()};\n`
-    }
-    css += `  transform-origin: ${origin};\n`
-    css += `}`
+    const css = `.transformed-element {
+  transform: ${transformValue.trim()};
+  transform-origin: ${origin.value};
+}`
 
     cssCode.textContent = css
   }
 
-  // Initialize transform
+  // Initialize preview
   updateTransformPreview()
 }
 
 // Flexbox Generator
 function initFlexboxGenerator() {
-  const displaySelect = document.getElementById("flex-container-display")
-  const directionSelect = document.getElementById("flex-container-direction")
-  const wrapSelect = document.getElementById("flex-container-wrap")
-  const justifySelect = document.getElementById("flex-container-justify")
-  const alignItemsSelect = document.getElementById("flex-container-align-items")
-  const alignContentSelect = document.getElementById("flex-container-align-content")
+  const flexDirection = document.getElementById("flex-direction")
+  const flexWrap = document.getElementById("flex-wrap")
+  const justifyContent = document.getElementById("justify-content")
+  const alignItems = document.getElementById("align-items")
+  const alignContent = document.getElementById("align-content")
+  const flexGap = document.getElementById("flex-gap")
+  const flexItems = document.getElementById("flex-items")
+  const generateBtn = document.getElementById("generate-flexbox")
 
-  const itemOrderInput = document.getElementById("flex-item-order")
-  const itemGrowInput = document.getElementById("flex-item-grow")
-  const itemShrinkInput = document.getElementById("flex-item-shrink")
-  const itemBasisInput = document.getElementById("flex-item-basis")
-  const itemAlignSelfSelect = document.getElementById("flex-item-align-self")
+  const preview = document.getElementById("flexbox-preview")
+  const cssCode = document.getElementById("flexbox-css-code")
+  const htmlCode = document.getElementById("flexbox-html-code")
 
-  const containerPreview = document.getElementById("flex-container-preview")
-  const itemPreview = document.getElementById("flex-item-preview")
-  const cssCode = document.getElementById("flex-css-code")
+  const flexGapValue = document.getElementById("flex-gap-value")
 
-  // Update flexbox on input change
-  ;[displaySelect, directionSelect, wrapSelect, justifySelect, alignItemsSelect, alignContentSelect].forEach(
-    (input) => {
-      input.addEventListener("change", updateFlexboxPreview)
-    },
-  )
-  ;[itemOrderInput, itemGrowInput, itemShrinkInput, itemBasisInput, itemAlignSelfSelect].forEach((input) => {
-    input.addEventListener("input", updateFlexboxPreview)
+  // Update value displays on input change
+  flexGap.addEventListener("input", () => {
+    flexGapValue.textContent = `${flexGap.value}px`
   })
 
-  function updateFlexboxPreview() {
-    // Update container styles
-    containerPreview.style.display = displaySelect.value
-    containerPreview.style.flexDirection = directionSelect.value
-    containerPreview.style.flexWrap = wrapSelect.value
-    containerPreview.style.justifyContent = justifySelect.value
-    containerPreview.style.alignItems = alignItemsSelect.value
-    containerPreview.style.alignContent = alignContentSelect.value
+  // Generate flexbox on button click
+  generateBtn.addEventListener("click", generateFlexbox)
 
-    // Update item styles
-    itemPreview.style.order = itemOrderInput.value
-    itemPreview.style.flexGrow = itemGrowInput.value
-    itemPreview.style.flexShrink = itemShrinkInput.value
-    itemPreview.style.flexBasis = itemBasisInput.value
-    itemPreview.style.alignSelf = itemAlignSelfSelect.value
+  function generateFlexbox() {
+    const direction = flexDirection.value
+    const wrap = flexWrap.value
+    const justify = justifyContent.value
+    const alignI = alignItems.value
+    const alignC = alignContent.value
+    const gap = flexGap.value
+    const items = Number.parseInt(flexItems.value)
 
-    // Generate CSS code
-    let css = `.container {\n`
-    css += `  display: ${displaySelect.value};\n`
-    css += `  flex-direction: ${directionSelect.value};\n`
-    css += `  flex-wrap: ${wrapSelect.value};\n`
-    css += `  justify-content: ${justifySelect.value};\n`
-    css += `  align-items: ${alignItemsSelect.value};\n`
-    css += `  align-content: ${alignContentSelect.value};\n`
-    css += `}\n\n`
+    // Generate HTML
+    let flexboxHtml = '<div class="flex-container">\n'
 
-    css += `.item {\n`
-    css += `  order: ${itemOrderInput.value};\n`
-    css += `  flex-grow: ${itemGrowInput.value};\n`
-    css += `  flex-shrink: ${itemShrinkInput.value};\n`
-    css += `  flex-basis: ${itemBasisInput.value};\n`
-    css += `  align-self: ${itemAlignSelfSelect.value};\n`
-    css += `}`
+    for (let i = 0; i < items; i++) {
+      flexboxHtml += `  <div class="flex-item">Item ${i + 1}</div>\n`
+    }
 
-    cssCode.textContent = css
+    flexboxHtml += "</div>"
+
+    // Generate CSS
+    const flexboxCss = `.flex-container {
+  display: flex;
+  flex-direction: ${direction};
+  flex-wrap: ${wrap};
+  justify-content: ${justify};
+  align-items: ${alignI};
+  align-content: ${alignC};
+  gap: ${gap}px;
+}
+
+.flex-item {
+  padding: 20px;
+  background-color: #3498db;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+}`
+
+    // Update preview and code
+    preview.innerHTML = flexboxHtml
+    htmlCode.textContent = flexboxHtml
+    cssCode.textContent = flexboxCss
+
+    // Apply CSS to preview
+    const container = preview.querySelector(".flex-container")
+
+    container.style.display = "flex"
+    container.style.flexDirection = direction
+    container.style.flexWrap = wrap
+    container.style.justifyContent = justify
+    container.style.alignItems = alignI
+    container.style.alignContent = alignC
+    container.style.gap = `${gap}px`
   }
 
-  // Initialize flexbox preview
-  updateFlexboxPreview()
+  // Initialize flexbox
+  generateFlexbox()
 }
 
 // Grid Generator
 function initGridGenerator() {
-  const displaySelect = document.getElementById("grid-container-display")
-  const templateColumnsInput = document.getElementById("grid-container-template-columns")
-  const templateRowsInput = document.getElementById("grid-container-template-rows")
-  const gapInput = document.getElementById("grid-container-gap")
-  const justifyItemsSelect = document.getElementById("grid-container-justify-items")
-  const alignItemsSelect = document.getElementById("grid-container-align-items")
-  const justifyContentSelect = document.getElementById("grid-container-justify-content")
-  const alignContentSelect = document.getElementById("grid-container-align-content")
+  const gridColumns = document.getElementById("grid-columns")
+  const gridRows = document.getElementById("grid-rows")
+  const columnGap = document.getElementById("grid-column-gap")
+  const rowGap = document.getElementById("grid-row-gap")
+  const justifyItems = document.getElementById("justify-items")
+  const alignItems = document.getElementById("align-grid-items")
+  const gridItems = document.getElementById("grid-items")
+  const generateBtn = document.getElementById("generate-grid")
 
-  const itemColumnStartInput = document.getElementById("grid-item-column-start")
-  const itemColumnEndInput = document.getElementById("grid-item-column-end")
-  const itemRowStartInput = document.getElementById("grid-item-row-start")
-  const itemRowEndInput = document.getElementById("grid-item-row-end")
-  const itemJustifySelfSelect = document.getElementById("grid-item-justify-self")
-  const itemAlignSelfSelect = document.getElementById("grid-item-align-self")
-
-  const containerPreview = document.getElementById("grid-container-preview")
-  const itemPreview = document.getElementById("grid-item-preview")
+  const preview = document.getElementById("grid-preview")
   const cssCode = document.getElementById("grid-css-code")
+  const htmlCode = document.getElementById("grid-html-code")
 
-  // Update grid on input change
-  ;[
-    displaySelect,
-    templateColumnsInput,
-    templateRowsInput,
-    gapInput,
-    justifyItemsSelect,
-    alignItemsSelect,
-    justifyContentSelect,
-    alignContentSelect,
-  ].forEach((input) => {
-    input.addEventListener("change", updateGridPreview)
-  })
-  ;[
-    itemColumnStartInput,
-    itemColumnEndInput,
-    itemRowStartInput,
-    itemRowEndInput,
-    itemJustifySelfSelect,
-    itemAlignSelfSelect,
-  ].forEach((input) => {
-    input.addEventListener("input", updateGridPreview)
+  const columnGapValue = document.getElementById("grid-column-gap-value")
+  const rowGapValue = document.getElementById("grid-row-gap-value")
+
+  // Update value displays on input change
+  columnGap.addEventListener("input", () => {
+    columnGapValue.textContent = `${columnGap.value}px`
   })
 
-  function updateGridPreview() {
-    // Update container styles
-    containerPreview.style.display = displaySelect.value
-    containerPreview.style.gridTemplateColumns = templateColumnsInput.value
-    containerPreview.style.gridTemplateRows = templateRowsInput.value
-    containerPreview.style.gap = gapInput.value
-    containerPreview.style.justifyItems = justifyItemsSelect.value
-    containerPreview.style.alignItems = alignItemsSelect.value
-    containerPreview.style.justifyContent = justifyContentSelect.value
-    containerPreview.style.alignContent = alignContentSelect.value
+  rowGap.addEventListener("input", () => {
+    rowGapValue.textContent = `${rowGap.value}px`
+  })
 
-    // Update item styles
-    itemPreview.style.gridColumnStart = itemColumnStartInput.value
-    itemPreview.style.gridColumnEnd = itemColumnEndInput.value
-    itemPreview.style.gridRowStart = itemRowStartInput.value
-    itemPreview.style.gridRowEnd = itemRowEndInput.value
-    itemPreview.style.justifySelf = itemJustifySelfSelect.value
-    itemPreview.style.alignSelf = itemAlignSelfSelect.value
+  // Generate grid on button click
+  generateBtn.addEventListener("click", generateGrid)
 
-    // Generate CSS code
-    let css = `.container {\n`
-    css += `  display: ${displaySelect.value};\n`
-    css += `  grid-template-columns: ${templateColumnsInput.value};\n`
-    css += `  grid-template-rows: ${templateRowsInput.value};\n`
-    css += `  gap: ${gapInput.value};\n`
-    css += `  justify-items: ${justifyItemsSelect.value};\n`
-    css += `  align-items: ${alignItemsSelect.value};\n`
-    css += `  justify-content: ${justifyContentSelect.value};\n`
-    css += `  align-content: ${alignContentSelect.value};\n`
-    css += `}\n\n`
+  function generateGrid() {
+    const columns = gridColumns.value
+    const rows = gridRows.value
+    const colGap = columnGap.value
+    const rGap = rowGap.value
+    const justifyI = justifyItems.value
+    const alignI = alignItems.value
+    const items = Number.parseInt(gridItems.value)
 
-    css += `.item {\n`
-    css += `  grid-column-start: ${itemColumnStartInput.value};\n`
-    css += `  grid-column-end: ${itemColumnEndInput.value};\n`
-    css += `  grid-row-start: ${itemRowStartInput.value};\n`
-    css += `  grid-row-end: ${itemRowEndInput.value};\n`
-    css += `  justify-self: ${itemJustifySelfSelect.value};\n`
-    css += `  align-self: ${itemAlignSelfSelect.value};\n`
-    css += `}`
+    // Generate HTML
+    let gridHtml = '<div class="grid-container">\n'
 
-    cssCode.textContent = css
+    for (let i = 0; i < items; i++) {
+      gridHtml += `  <div class="grid-item">Item ${i + 1}</div>\n`
+    }
+
+    gridHtml += "</div>"
+
+    // Generate CSS
+    let gridCss = `.grid-container {\n`
+    gridCss += `  display: grid;\n`
+    gridCss += `  grid-template-columns: ${columns};\n`
+    gridCss += `  grid-template-rows: ${rows};\n`
+    gridCss += `  column-gap: ${colGap}px;\n`
+    gridCss += `  row-gap: ${rGap}px;\n`
+    gridCss += `  justify-items: ${justifyI};\n`
+    gridCss += `  align-items: ${alignI};\n`
+    gridCss += `}\n\n`
+
+    gridCss += `.grid-item {\n`
+    gridCss += `  padding: 20px;\n`
+    gridCss += `  background-color: #3498db;\n`
+    gridCss += `  color: white;\n`
+    gridCss += `  text-align: center;\n`
+    gridCss += `  border-radius: 5px;\n`
+    gridCss += `}`
+
+    // Update preview and code
+    preview.innerHTML = gridHtml
+    htmlCode.textContent = gridHtml
+    cssCode.textContent = gridCss
+
+    // Apply CSS to preview
+    const container = preview.querySelector(".grid-container")
+
+    container.style.display = "grid"
+    container.style.gridTemplateColumns = columns
+    container.style.gridTemplateRows = rows
+    container.style.columnGap = `${colGap}px`
+    container.style.rowGap = `${rGap}px`
+    container.style.justifyItems = justifyI
+    container.style.alignItems = alignI
   }
 
-  // Initialize grid preview
-  updateGridPreview()
+  // Initialize grid
+  generateGrid()
 }
 
 // Responsive Design Tool
-function initResponsiveDesign() {
-  const viewportWidthInput = document.getElementById("responsive-viewport-width")
-  const viewportWidthValue = document.getElementById("responsive-viewport-width-value")
-  const viewportHeightInput = document.getElementById("responsive-viewport-height")
-  const viewportHeightValue = document.getElementById("responsive-viewport-height-value")
-  const deviceTypeSelect = document.getElementById("responsive-device-type")
-  const orientationSelect = document.getElementById("responsive-orientation")
-  const addMediaQueryBtn = document.getElementById("add-media-query")
-  const mediaQueriesContainer = document.getElementById("responsive-media-queries")
+function initResponsiveTool() {
+  const responsiveType = document.getElementById("responsive-type")
+  const mediaQueryControls = document.getElementById("media-query-controls")
+  const containerQueryControls = document.getElementById("container-query-controls")
+  const fluidTypographyControls = document.getElementById("fluid-typography-controls")
+  const generateBtn = document.getElementById("generate-responsive")
 
-  const previewContainer = document.getElementById("responsive-preview")
+  const preview = document.getElementById("responsive-preview")
   const cssCode = document.getElementById("responsive-css-code")
+  const htmlCode = document.getElementById("responsive-html-code")
 
-  // Update viewport size display
-  viewportWidthInput.addEventListener("input", () => {
-    viewportWidthValue.textContent = `${viewportWidthInput.value}px`
-    updateResponsivePreview()
+  // Show/hide controls based on responsive type
+  responsiveType.addEventListener("change", () => {
+    mediaQueryControls.style.display = "none"
+    containerQueryControls.style.display = "none"
+    fluidTypographyControls.style.display = "none"
+
+    switch (responsiveType.value) {
+      case "media-query":
+        mediaQueryControls.style.display = "block"
+        break
+      case "container-query":
+        containerQueryControls.style.display = "block"
+        break
+      case "fluid-typography":
+        fluidTypographyControls.style.display = "block"
+        break
+    }
+
+    // Update preview when changing type
+    generateResponsiveCode()
   })
 
-  viewportHeightInput.addEventListener("input", () => {
-    viewportHeightValue.textContent = `${viewportHeightInput.value}px`
-    updateResponsivePreview()
+  // Update value displays for fluid typography
+  const minFontSize = document.getElementById("min-font-size")
+  const maxFontSize = document.getElementById("max-font-size")
+  const minViewportWidth = document.getElementById("min-viewport-width")
+  const maxViewportWidth = document.getElementById("max-viewport-width")
+
+  const minFontSizeValue = document.getElementById("min-font-size-value")
+  const maxFontSizeValue = document.getElementById("max-font-size-value")
+  const minViewportWidthValue = document.getElementById("min-viewport-width-value")
+  const maxViewportWidthValue = document.getElementById("max-viewport-width-value")
+
+  minFontSize.addEventListener("input", () => {
+    minFontSizeValue.textContent = `${minFontSize.value}px`
+    generateResponsiveCode()
   })
 
-  // Update preview on input change
-  ;[deviceTypeSelect, orientationSelect].forEach((input) => {
-    input.addEventListener("change", updateResponsivePreview)
+  maxFontSize.addEventListener("input", () => {
+    maxFontSizeValue.textContent = `${maxFontSize.value}px`
+    generateResponsiveCode()
   })
 
-  // Add new media query
-  addMediaQueryBtn.addEventListener("click", () => {
-    const mediaQueryDiv = document.createElement("div")
-    mediaQueryDiv.className = "media-query"
-
-    mediaQueryDiv.innerHTML = `
-      <input type="text" class="media-query-text" placeholder="Media Query" value="(min-width: 768px)">
-      <textarea class="media-query-css" placeholder="CSS Code">/* Tablet styles */
-.container {
-  max-width: 720px;
-  margin: 0 auto;
-}</textarea>
-      <button class="remove-media-query"><i class="fas fa-times"></i></button>
-    `
-
-    mediaQueriesContainer.appendChild(mediaQueryDiv)
-
-    // Add remove button event listener
-    const removeBtn = mediaQueryDiv.querySelector(".remove-media-query")
-    removeBtn.addEventListener("click", () => {
-      mediaQueriesContainer.removeChild(mediaQueryDiv)
-      updateResponsivePreview()
-    })
-
-    // Add input event listeners
-    const queryInput = mediaQueryDiv.querySelector(".media-query-text")
-    const cssInput = mediaQueryDiv.querySelector(".media-query-css")
-    ;[queryInput, cssInput].forEach((input) => {
-      input.addEventListener("input", updateResponsivePreview)
-    })
-
-    updateResponsivePreview()
+  minViewportWidth.addEventListener("input", () => {
+    minViewportWidthValue.textContent = `${minViewportWidth.value}px`
+    generateResponsiveCode()
   })
 
-  // Setup initial media query remove buttons
-  const initialRemoveBtns = mediaQueriesContainer.querySelectorAll(".remove-media-query")
-  initialRemoveBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const mediaQueryDiv = e.target.closest(".media-query")
-      mediaQueriesContainer.removeChild(mediaQueryDiv)
-      updateResponsivePreview()
-    })
+  maxViewportWidth.addEventListener("input", () => {
+    maxViewportWidthValue.textContent = `${maxViewportWidth.value}px`
+    generateResponsiveCode()
   })
 
-  // Setup initial media query inputs
-  const initialQueryInputs = mediaQueriesContainer.querySelectorAll(".media-query-text, .media-query-css")
-  initialQueryInputs.forEach((input) => {
-    input.addEventListener("input", updateResponsivePreview)
-  })
+  // Add event listeners for media query checkboxes
+  document.getElementById("breakpoint-sm").addEventListener("change", generateResponsiveCode)
+  document.getElementById("breakpoint-md").addEventListener("change", generateResponsiveCode)
+  document.getElementById("breakpoint-lg").addEventListener("change", generateResponsiveCode)
+  document.getElementById("breakpoint-xl").addEventListener("change", generateResponsiveCode)
 
-  function updateResponsivePreview() {
-    // Update preview container size
-    previewContainer.style.width = `${viewportWidthInput.value}px`
-    previewContainer.style.height = `${viewportHeightInput.value}px`
+  // Add event listeners for container query checkboxes
+  document.getElementById("container-sm").addEventListener("change", generateResponsiveCode)
+  document.getElementById("container-md").addEventListener("change", generateResponsiveCode)
+  document.getElementById("container-lg").addEventListener("change", generateResponsiveCode)
 
-    // Generate CSS code
-    let css = `/* Base styles */\n`
-    css += `.container {\n`
-    css += `  width: 100%;\n`
-    css += `  padding: 15px;\n`
-    css += `  box-sizing: border-box;\n`
-    css += `}\n\n`
+  // Generate responsive code on button click
+  generateBtn.addEventListener("click", generateResponsiveCode)
 
-    // Add media queries
-    const mediaQueries = mediaQueriesContainer.querySelectorAll(".media-query")
-    mediaQueries.forEach((queryDiv) => {
-      const queryText = queryDiv.querySelector(".media-query-text").value
-      const queryCss = queryDiv.querySelector(".media-query-css").value
-
-      css += `/* ${deviceTypeSelect.value} - ${orientationSelect.value} */\n`
-      css += `@media ${queryText} {\n`
-      css += queryCss
-        .split("\n")
-        .map((line) => `  ${line}`)
-        .join("\n")
-      css += `\n}\n\n`
-    })
-
-    cssCode.textContent = css
+  // Remove any existing responsive styles
+  function cleanupStyles() {
+    const existingStyle = document.getElementById("responsive-preview-style")
+    if (existingStyle) {
+      document.head.removeChild(existingStyle)
+    }
   }
 
-  // Initialize responsive preview
-  updateResponsivePreview()
+  function generateResponsiveCode() {
+    cleanupStyles()
+
+    let css = ""
+    let html = ""
+
+    switch (responsiveType.value) {
+      case "media-query":
+        const breakpointSm = document.getElementById("breakpoint-sm").checked
+        const breakpointMd = document.getElementById("breakpoint-md").checked
+        const breakpointLg = document.getElementById("breakpoint-lg").checked
+        const breakpointXl = document.getElementById("breakpoint-xl").checked
+
+        html = '<div class="responsive-container">\n'
+        html += '  <div class="responsive-element">Responsive Element</div>\n'
+        html += "</div>"
+
+        css = `.responsive-element {
+  padding: 20px;
+  background-color: #3498db;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  width: 100%;
+}`
+
+        if (breakpointSm) {
+          css += `
+
+/* Small devices (576px and up) */
+@media (min-width: 576px) {
+  .responsive-element {
+    background-color: #2ecc71;
+    width: 80%;
+    margin: 0 auto;
+  }
+}`
+        }
+
+        if (breakpointMd) {
+          css += `
+
+/* Medium devices (768px and up) */
+@media (min-width: 768px) {
+  .responsive-element {
+    background-color: #f1c40f;
+    width: 70%;
+    margin: 0 auto;
+  }
+}`
+        }
+
+        if (breakpointLg) {
+          css += `
+
+/* Large devices (992px and up) */
+@media (min-width: 992px) {
+  .responsive-element {
+    background-color: #e74c3c;
+    width: 60%;
+    margin: 0 auto;
+  }
+}`
+        }
+
+        if (breakpointXl) {
+          css += `
+
+/* Extra large devices (1200px and up) */
+@media (min-width: 1200px) {
+  .responsive-element {
+    background-color: #9b59b6;
+    width: 50%;
+    margin: 0 auto;
+  }
+}`
+        }
+        break
+
+      case "container-query":
+        const containerSm = document.getElementById("container-sm").checked
+        const containerMd = document.getElementById("container-md").checked
+        const containerLg = document.getElementById("container-lg").checked
+
+        html = '<div class="container">\n'
+        html += '  <div class="card">Container Query Demo</div>\n'
+        html += "</div>"
+
+        css = `.container {
+  resize: horizontal;
+  overflow: auto;
+  border: 2px dashed #ccc;
+  padding: 20px;
+  max-width: 100%;
+  min-width: 200px;
+  container-type: inline-size;
+}
+
+.card {
+  padding: 20px;
+  background-color: #3498db;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* Container queries require @container rule */
+/* Note: This is a newer feature and may not be supported in all browsers */`
+
+        if (containerSm) {
+          css += `
+
+@container (min-width: 400px) {
+  .card {
+    background-color: #2ecc71;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}`
+        }
+
+        if (containerMd) {
+          css += `
+
+@container (min-width: 600px) {
+  .card {
+    background-color: #f1c40f;
+    padding: 30px;
+    font-size: 1.2em;
+  }
+}`
+        }
+
+        if (containerLg) {
+          css += `
+
+@container (min-width: 800px) {
+  .card {
+    background-color: #e74c3c;
+    padding: 40px;
+    font-size: 1.5em;
+    border-radius: 10px;
+  }
+}`
+        }
+        break
+
+      case "fluid-typography":
+        const minFont = minFontSize.value
+        const maxFont = maxFontSize.value
+        const minWidth = minViewportWidth.value
+        const maxWidth = maxViewportWidth.value
+
+        html = '<div class="fluid-text-container">\n'
+        html += '  <h1 class="fluid-heading">Fluid Typography</h1>\n'
+        html += '  <p class="fluid-text">This text will scale smoothly between viewport widths.</p>\n'
+        html += "</div>"
+
+        css = `/* Fluid Typography using clamp() */
+
+.fluid-heading {
+  /* clamp(min, preferred, max) */
+  font-size: clamp(${minFont}px, calc(${minFont}px + (${maxFont} - ${minFont}) * ((100vw - ${minWidth}px) / (${maxWidth} - ${minWidth}))), ${maxFont}px);
+  margin-bottom: 1rem;
+  color: #3498db;
+}
+
+.fluid-text {
+  font-size: clamp(${Math.max(12, minFont - 4)}px, calc(${Math.max(12, minFont - 4)}px + (${maxFont - 4} - ${Math.max(12, minFont - 4)}) * ((100vw - ${minWidth}px) / (${maxWidth} - ${minWidth}))), ${maxFont - 4}px);
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Alternative approach using viewport units */
+/* .fluid-text-alt {
+  font-size: calc(${minFont}px + (${maxFont} - ${minFont}) * ((100vw - ${minWidth}px) / (${maxWidth} - ${minWidth})));
+} */`
+        break
+    }
+
+    // Update preview and code
+    preview.innerHTML = html
+    htmlCode.textContent = html
+    cssCode.textContent = css
+
+    // Apply CSS to preview
+    const style = document.createElement("style")
+    style.id = "responsive-preview-style"
+    style.textContent = css
+    document.head.appendChild(style)
+  }
+
+  // Initialize responsive tool
+  generateResponsiveCode()
 }
 
 // SVG Icon Generator
 function initSvgGenerator() {
-  const widthInput = document.getElementById("svg-width")
-  const heightInput = document.getElementById("svg-height")
-  const bgColorInput = document.getElementById("svg-bg-color")
-  const shapeSelect = document.getElementById("svg-shape")
-  const shapeColorInput = document.getElementById("svg-shape-color")
-  const shapeSizeInput = document.getElementById("svg-shape-size")
-  const shapeXInput = document.getElementById("svg-shape-x")
-  const shapeYInput = document.getElementById("svg-shape-y")
+  const svgType = document.getElementById("svg-type")
+  const svgSize = document.getElementById("svg-size")
+  const svgStrokeWidth = document.getElementById("svg-stroke-width")
+  const svgColor = document.getElementById("svg-color")
+  const svgBgColor = document.getElementById("svg-bg-color")
+  const svgBgEnabled = document.getElementById("svg-bg-enabled")
+  const svgBorderRadius = document.getElementById("svg-border-radius")
 
   const preview = document.getElementById("svg-preview")
-  const htmlCode = document.getElementById("svg-html-code")
+  const svgCode = document.getElementById("svg-code")
+  const svgCssCode = document.getElementById("svg-css-code")
 
-  // Update SVG on input change
-  ;[
-    widthInput,
-    heightInput,
-    bgColorInput,
-    shapeSelect,
-    shapeColorInput,
-    shapeSizeInput,
-    shapeXInput,
-    shapeYInput,
-  ].forEach((input) => {
+  const svgSizeValue = document.getElementById("svg-size-value")
+  const svgStrokeWidthValue = document.getElementById("svg-stroke-width-value")
+  const svgBorderRadiusValue = document.getElementById("svg-border-radius-value")
+
+  // Update value displays on input change
+  svgSize.addEventListener("input", () => {
+    svgSizeValue.textContent = `${svgSize.value}px`
+    updateSvgPreview()
+  })
+
+  svgStrokeWidth.addEventListener("input", () => {
+    svgStrokeWidthValue.textContent = `${svgStrokeWidth.value}px`
+    updateSvgPreview()
+  })
+
+  svgBorderRadius.addEventListener("input", () => {
+    svgBorderRadiusValue.textContent = `${svgBorderRadius.value}%`
+    updateSvgPreview()
+  })
+
+  // Update preview and code on input change
+  ;[svgType, svgColor, svgBgColor, svgBgEnabled].forEach((input) => {
     input.addEventListener("input", updateSvgPreview)
+    input.addEventListener("change", updateSvgPreview)
   })
 
   function updateSvgPreview() {
-    const width = widthInput.value
-    const height = heightInput.value
-    const bgColor = bgColorInput.value
-    const shape = shapeSelect.value
-    const shapeColor = shapeColorInput.value
-    const shapeSize = shapeSizeInput.value
-    const x = shapeXInput.value
-    const y = shapeYInput.value
+    const size = Number.parseInt(svgSize.value)
+    const strokeWidth = Number.parseInt(svgStrokeWidth.value)
+    const color = svgColor.value
+    const bgColor = svgBgColor.value
+    const bgEnabled = svgBgEnabled.checked
+    const borderRadius = Number.parseInt(svgBorderRadius.value)
+    const type = svgType.value
 
-    // Create SVG element
-    let svgContent = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">\n`
+    // Create SVG based on type
+    let svgContent = ""
 
-    // Add background if not white
-    if (bgColor !== "#ffffff") {
-      svgContent += `  <rect width="100%" height="100%" fill="${bgColor}" />\n`
-    }
-
-    // Add shape based on selection
-    switch (shape) {
+    switch (type) {
+      case "arrow":
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  <line x1="5" y1="12" x2="19" y2="12"></line>
+  <polyline points="12 5 19 12 12 19"></polyline>
+</svg>`
+        break
+      case "hamburger":
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  <line x1="3" y1="6" x2="21" y2="6"></line>
+  <line x1="3" y1="12" x2="21" y2="12"></line>
+  <line x1="3" y1="18" x2="21" y2="18"></line>
+</svg>`
+        break
+      case "close":
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  <line x1="18" y1="6" x2="6" y2="18"></line>
+  <line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>`
+        break
+      case "check":
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  <polyline points="20 6 9 17 4 12"></polyline>
+</svg>`
+        break
+      case "heart":
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+</svg>`
+        break
+      case "star":
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>`
+        break
       case "circle":
-        svgContent += `  <circle cx="${x}%" cy="${y}%" r="${shapeSize}%" fill="${shapeColor}" />\n`
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="10"></circle>
+</svg>`
         break
-      case "rect":
-        const rectSize = shapeSize / 2
-        svgContent += `  <rect x="${x - rectSize}%" y="${y - rectSize}%" width="${shapeSize}%" height="${shapeSize}%" fill="${shapeColor}" />\n`
-        break
-      case "ellipse":
-        svgContent += `  <ellipse cx="${x}%" cy="${y}%" rx="${shapeSize}%" ry="${shapeSize / 2}%" fill="${shapeColor}" />\n`
-        break
-      case "line":
-        svgContent += `  <line x1="${x - shapeSize / 2}%" y1="${y}%" x2="${Number(x) + Number(shapeSize) / 2}%" y2="${y}%" stroke="${shapeColor}" stroke-width="3" />\n`
-        break
-      case "polygon":
-        // Create a triangle
-        const size = shapeSize / 2
-        const points = `${x},${y - size} ${x - size},${Number(y) + Number(size)} ${Number(x) + Number(size)},${Number(y) + Number(size)}`
-        svgContent += `  <polygon points="${points}" fill="${shapeColor}" />\n`
+      case "square":
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+</svg>`
         break
     }
 
-    svgContent += `</svg>`
+    // Create a wrapper div for the SVG
+    const wrapperDiv = document.createElement("div")
+    wrapperDiv.className = "svg-wrapper"
+    wrapperDiv.innerHTML = svgContent
+
+    // Apply background if enabled
+    if (bgEnabled) {
+      wrapperDiv.style.backgroundColor = bgColor
+      wrapperDiv.style.borderRadius = `${borderRadius}%`
+      wrapperDiv.style.padding = "5px"
+      wrapperDiv.style.display = "inline-block"
+    }
 
     // Update preview
-    preview.innerHTML = svgContent
+    preview.innerHTML = ""
+    preview.appendChild(wrapperDiv)
 
-    // Update code
-    htmlCode.textContent = svgContent
+    // Generate SVG code
+    svgCode.textContent = svgContent
+
+    // Generate CSS code
+    let css = `.icon-${type} {
+  width: ${size}px;
+  height: ${size}px;`
+
+    if (bgEnabled) {
+      css += `
+  background-color: ${bgColor};
+  border-radius: ${borderRadius}%;
+  padding: 5px;
+  display: inline-block;`
+    }
+
+    css += `
+}
+
+.icon-${type} svg {
+  stroke: ${color};
+  stroke-width: ${strokeWidth}px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}`
+
+    svgCssCode.textContent = css
   }
 
-  // Initialize SVG preview
+  // Initialize preview
   updateSvgPreview()
 }
