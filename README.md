@@ -1,4 +1,4 @@
-# css-tools# CSS Tool
+# CSS Tool
 
 A powerful and easy-to-use web-based tool for generating custom CSS styles and HTML snippets quickly. Perfect for developers and designers looking to streamline styling with live previews and exportable code.
 
