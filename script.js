@@ -97,12 +97,47 @@ function initButtonGenerator() {
   const btnPaddingValue = document.getElementById("btn-padding-value")
   const btnBorderRadiusValue = document.getElementById("btn-border-radius-value")
 
-    // Update preview and code on input change
-    ;[btnText, btnBgColor, btnTextColor, btnPadding, btnBorderRadius, btnHoverEffect, btnHoverBgColor].forEach(
-      (input) => {
-        input.addEventListener("input", updateButtonPreview)
-      },
-    )
+  // Update preview and code on input change
+  ;[btnText, btnBgColor, btnTextColor, btnPadding, btnBorderRadius, btnHoverEffect, btnHoverBgColor].forEach(
+    (input) => {
+      input.addEventListener("input", updateButtonPreview)
+    },
+  )
+
+  // Add hover event listeners to preview button
+  btnPreview.addEventListener("mouseenter", () => {
+    applyButtonHoverStyles(btnPreview)
+  })
+
+  btnPreview.addEventListener("mouseleave", () => {
+    resetButtonHoverStyles(btnPreview)
+  })
+
+  function applyButtonHoverStyles(element) {
+    switch (btnHoverEffect.value) {
+      case "scale":
+        element.style.transform = "scale(1.1)"
+        break
+      case "bg-change":
+        element.style.backgroundColor = btnHoverBgColor.value
+        break
+      case "shadow":
+        element.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"
+        break
+      case "border":
+        element.style.border = `2px solid ${btnHoverBgColor.value}`
+        element.style.padding = `${btnPadding.value - 2}px 22px` // Adjust padding to maintain size
+        break
+    }
+  }
+
+  function resetButtonHoverStyles(element) {
+    element.style.transform = ""
+    element.style.backgroundColor = btnBgColor.value
+    element.style.boxShadow = ""
+    element.style.border = "none"
+    element.style.padding = `${btnPadding.value}px 24px`
+  }
 
   function updateButtonPreview() {
     // Update preview
@@ -145,7 +180,8 @@ function initButtonGenerator() {
         break
       case "border":
         css += `
-  border: 2px solid ${btnHoverBgColor.value};`
+  border: 2px solid ${btnHoverBgColor.value};
+  padding: ${btnPadding.value - 2}px 22px; /* Adjust padding to maintain size */`
         break
     }
 
@@ -157,6 +193,9 @@ function initButtonGenerator() {
     // Generate HTML code
     const html = `<button class="button">${btnText.value}</button>`
     btnHtmlCode.textContent = html
+
+    // Reset hover styles when updating
+    resetButtonHoverStyles(btnPreview)
   }
 
   // Initialize preview
@@ -182,10 +221,10 @@ function initBoxShadowMaker() {
   const spreadValue = document.getElementById("shadow-spread-value")
   const opacityValue = document.getElementById("shadow-opacity-value")
 
-    // Update preview and code on input change
-    ;[hOffset, vOffset, blur, spread, color, opacity, inset].forEach((input) => {
-      input.addEventListener("input", updateShadowPreview)
-    })
+  // Update preview and code on input change
+  ;[hOffset, vOffset, blur, spread, color, opacity, inset].forEach((input) => {
+    input.addEventListener("input", updateShadowPreview)
+  })
 
   function updateShadowPreview() {
     // Update value displays
@@ -244,22 +283,22 @@ function initHoverEffectMaker() {
   const transitionValue = document.getElementById("hover-transition-value")
   const scaleDisplay = document.getElementById("hover-scale-display")
 
-    // Update preview and code on input change
-    ;[
-      elementType,
-      bgColor,
-      textColor,
-      transition,
-      scaleCheck,
-      bgChangeCheck,
-      textChangeCheck,
-      shadowCheck,
-      scaleValue,
-      bgChangeColor,
-      textChangeColor,
-    ].forEach((input) => {
-      input.addEventListener("input", updateHoverPreview)
-    })
+  // Update preview and code on input change
+  ;[
+    elementType,
+    bgColor,
+    textColor,
+    transition,
+    scaleCheck,
+    bgChangeCheck,
+    textChangeCheck,
+    shadowCheck,
+    scaleValue,
+    bgChangeColor,
+    textChangeColor,
+  ].forEach((input) => {
+    input.addEventListener("input", updateHoverPreview)
+  })
 
   // Add hover event listeners to preview element
   preview.addEventListener("mouseenter", () => {
@@ -383,10 +422,10 @@ function initColorPicker() {
 
   const opacityValue = document.getElementById("color-opacity-value")
 
-    // Update preview and code on input change
-    ;[colorInput, opacityInput].forEach((input) => {
-      input.addEventListener("input", updateColorPreview)
-    })
+  // Update preview and code on input change
+  ;[colorInput, opacityInput].forEach((input) => {
+    input.addEventListener("input", updateColorPreview)
+  })
 
   formatRadios.forEach((radio) => {
     radio.addEventListener("change", updateColorPreview)
@@ -1044,10 +1083,10 @@ function initGradientGenerator() {
     updateGradientPreview()
   })
 
-    // Update preview and code on input change
-    ;[angle, position, color1, color2, color3, useColor3].forEach((input) => {
-      input.addEventListener("input", updateGradientPreview)
-    })
+  // Update preview and code on input change
+  ;[angle, position, color1, color2, color3, useColor3].forEach((input) => {
+    input.addEventListener("input", updateGradientPreview)
+  })
 
   angle.addEventListener("input", () => {
     angleValue.textContent = `${angle.value}deg`
@@ -1123,11 +1162,11 @@ function initAnimationGenerator() {
   // Play animation on button click
   playBtn.addEventListener("click", playAnimation)
 
-    // Update preview and code on input change
-    ;[animationName, timing, iteration, direction, fill, animationType].forEach((input) => {
-      input.addEventListener("change", updateAnimationPreview)
-      input.addEventListener("input", updateAnimationPreview)
-    })
+  // Update preview and code on input change
+  ;[animationName, timing, iteration, direction, fill, animationType].forEach((input) => {
+    input.addEventListener("change", updateAnimationPreview)
+    input.addEventListener("input", updateAnimationPreview)
+  })
 
   function playAnimation() {
     // Reset animation
@@ -2064,112 +2103,118 @@ function initSvgGenerator() {
       input.addEventListener("change", updateSvgPreview)
     })
 
-  function updateSvgPreview() {
-    const size = Number.parseInt(svgSize.value)
-    const strokeWidth = Number.parseInt(svgStrokeWidth.value)
-    const color = svgColor.value
-    const bgColor = svgBgColor.value
-    const bgEnabled = svgBgEnabled.checked
-    const borderRadius = Number.parseInt(svgBorderRadius.value)
-    const type = svgType.value
+function updateSvgPreview() {
+  const size = Number.parseInt(svgSize.value)
+  const strokeWidth = Number.parseInt(svgStrokeWidth.value)
+  const color = svgColor.value
+  const bgColor = svgBgColor.value
+  const bgEnabled = svgBgEnabled.checked
+  const borderRadius = Number.parseInt(svgBorderRadius.value)
+  const type = svgType.value
 
-    // Create SVG based on type
-    let svgContent = ""
+  // Create SVG based on type
+  let svgContent = ""
 
-    switch (type) {
-      case "arrow":
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+  switch (type) {
+    case "arrow":
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
   <line x1="5" y1="12" x2="19" y2="12"></line>
   <polyline points="12 5 19 12 12 19"></polyline>
 </svg>`
-        break
-      case "hamburger":
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+      break
+    case "hamburger":
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
   <line x1="3" y1="6" x2="21" y2="6"></line>
   <line x1="3" y1="12" x2="21" y2="12"></line>
   <line x1="3" y1="18" x2="21" y2="18"></line>
 </svg>`
-        break
-      case "close":
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+      break
+    case "close":
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
   <line x1="18" y1="6" x2="6" y2="18"></line>
   <line x1="6" y1="6" x2="18" y2="18"></line>
 </svg>`
-        break
-      case "check":
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+      break
+    case "check":
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
   <polyline points="20 6 9 17 4 12"></polyline>
 </svg>`
-        break
-      case "heart":
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+      break
+    case "heart":
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
 </svg>`
-        break
-      case "star":
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+      break
+    case "star":
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
 </svg>`
-        break
-      case "circle":
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+      break
+    case "circle":
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
   <circle cx="12" cy="12" r="10"></circle>
 </svg>`
-        break
-      case "square":
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
+      break
+    case "square":
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">
   <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
 </svg>`
-        break
-    }
+      break
+  }
 
-    // Create a wrapper div for the SVG
-    const wrapperDiv = document.createElement("div")
-    wrapperDiv.className = "svg-wrapper"
-    wrapperDiv.innerHTML = svgContent
+  // Clear previous content
+  preview.innerHTML = ""
+  
+  // Create a wrapper div for the SVG with proper styling
+  const wrapperDiv = document.createElement("div")
+  wrapperDiv.className = "svg-wrapper"
+  wrapperDiv.style.display = "inline-flex"
+  wrapperDiv.style.justifyContent = "center"
+  wrapperDiv.style.alignItems = "center"
+  
+  // Apply background if enabled
+  if (bgEnabled) {
+    wrapperDiv.style.backgroundColor = bgColor
+    wrapperDiv.style.borderRadius = `${borderRadius}%`
+    wrapperDiv.style.padding = "10px"
+  }
+  
+  // Set the SVG content
+  wrapperDiv.innerHTML = svgContent
+  
+  // Append to preview
+  preview.appendChild(wrapperDiv)
 
-    // Apply background if enabled
-    if (bgEnabled) {
-      wrapperDiv.style.backgroundColor = bgColor
-      wrapperDiv.style.borderRadius = `${borderRadius}%`
-      wrapperDiv.style.padding = "5px"
-      wrapperDiv.style.display = "inline-block"
-    }
+  // Generate SVG code
+  svgCode.textContent = svgContent
 
-    // Update preview
-    preview.innerHTML = ""
-    preview.appendChild(wrapperDiv)
+  // Generate CSS code
+  let css = `.icon-${type} {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;`
 
-    // Generate SVG code
-    svgCode.textContent = svgContent
-
-    // Generate CSS code
-    let css = `.icon-${type} {
-  width: ${size}px;
-  height: ${size}px;`
-
-    if (bgEnabled) {
-      css += `
+  if (bgEnabled) {
+    css += `
   background-color: ${bgColor};
   border-radius: ${borderRadius}%;
-  padding: 5px;
-  display: inline-block;`
-    }
+  padding: 10px;`
+  }
 
-    css += `
+  css += `
 }
 
 .icon-${type} svg {
+  width: ${size}px;
+  height: ${size}px;
   stroke: ${color};
   stroke-width: ${strokeWidth}px;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
-}`
+}
+`
 
-    svgCssCode.textContent = css
-  }
-
-  // Initialize preview
-  updateSvgPreview()
+  svgCssCode.textContent = css
+}
 }

@@ -163,6 +163,8 @@ footer {
   margin-bottom: 1.5rem;
   min-height: 150px;
   display: flex;
+overflow-x: scroll;
+  width: 50vw;
   justify-content: center;
   align-items: center;
 }
@@ -504,6 +506,13 @@ td {
   .tool-container {
     gap: 1.5rem;
   }
+  
+  .preview-container {
+width: 90vw;
+  }
+  .code-container pre {
+  width: 90vw;
+  }
 }
 
 /* Tablets and mobile */
@@ -597,6 +606,8 @@ td {
     padding: 1.25rem;
     margin-bottom: 1rem;
     min-height: 120px;
+    width: 85vw;
+    overflow: scroll;
   }
 
   .code-container h3 {
@@ -607,6 +618,8 @@ td {
   .code-container pre {
     padding: 0.75rem;
     font-size: 0.75rem;
+        width: 85vw;
+    overflow: scroll;
   }
 
   .copy-btn {
@@ -762,6 +775,7 @@ td {
 
 /* Touch device optimizations */
 @media (hover: none) {
+
   .tab-btn,
   .action-btn,
   .copy-btn,
@@ -801,6 +815,7 @@ td {
 
 /* Fix for iOS input styling */
 @supports (-webkit-touch-callout: none) {
+
   input,
   select,
   textarea {
@@ -808,7 +823,7 @@ td {
   }
 }
 
-/* Fix for Firefox range inputs */ \
+/* Fix for Firefox range inputs */
 @-moz-document url-prefix() {
   input[type="range"] {
     height: 0.8rem;
@@ -817,6 +832,7 @@ td {
 
 /* Fix for Edge and IE */
 @supports (-ms-ime-align: auto) {
+
   .tab-btn,
   .action-btn {
     transition: none;
