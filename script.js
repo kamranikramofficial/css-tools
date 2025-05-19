@@ -97,12 +97,12 @@ function initButtonGenerator() {
   const btnPaddingValue = document.getElementById("btn-padding-value")
   const btnBorderRadiusValue = document.getElementById("btn-border-radius-value")
 
-  // Update preview and code on input change
-  ;[btnText, btnBgColor, btnTextColor, btnPadding, btnBorderRadius, btnHoverEffect, btnHoverBgColor].forEach(
-    (input) => {
-      input.addEventListener("input", updateButtonPreview)
-    },
-  )
+    // Update preview and code on input change
+    ;[btnText, btnBgColor, btnTextColor, btnPadding, btnBorderRadius, btnHoverEffect, btnHoverBgColor].forEach(
+      (input) => {
+        input.addEventListener("input", updateButtonPreview)
+      },
+    )
 
   function updateButtonPreview() {
     // Update preview
@@ -182,10 +182,10 @@ function initBoxShadowMaker() {
   const spreadValue = document.getElementById("shadow-spread-value")
   const opacityValue = document.getElementById("shadow-opacity-value")
 
-  // Update preview and code on input change
-  ;[hOffset, vOffset, blur, spread, color, opacity, inset].forEach((input) => {
-    input.addEventListener("input", updateShadowPreview)
-  })
+    // Update preview and code on input change
+    ;[hOffset, vOffset, blur, spread, color, opacity, inset].forEach((input) => {
+      input.addEventListener("input", updateShadowPreview)
+    })
 
   function updateShadowPreview() {
     // Update value displays
@@ -244,22 +244,22 @@ function initHoverEffectMaker() {
   const transitionValue = document.getElementById("hover-transition-value")
   const scaleDisplay = document.getElementById("hover-scale-display")
 
-  // Update preview and code on input change
-  ;[
-    elementType,
-    bgColor,
-    textColor,
-    transition,
-    scaleCheck,
-    bgChangeCheck,
-    textChangeCheck,
-    shadowCheck,
-    scaleValue,
-    bgChangeColor,
-    textChangeColor,
-  ].forEach((input) => {
-    input.addEventListener("input", updateHoverPreview)
-  })
+    // Update preview and code on input change
+    ;[
+      elementType,
+      bgColor,
+      textColor,
+      transition,
+      scaleCheck,
+      bgChangeCheck,
+      textChangeCheck,
+      shadowCheck,
+      scaleValue,
+      bgChangeColor,
+      textChangeColor,
+    ].forEach((input) => {
+      input.addEventListener("input", updateHoverPreview)
+    })
 
   // Add hover event listeners to preview element
   preview.addEventListener("mouseenter", () => {
@@ -383,10 +383,10 @@ function initColorPicker() {
 
   const opacityValue = document.getElementById("color-opacity-value")
 
-  // Update preview and code on input change
-  ;[colorInput, opacityInput].forEach((input) => {
-    input.addEventListener("input", updateColorPreview)
-  })
+    // Update preview and code on input change
+    ;[colorInput, opacityInput].forEach((input) => {
+      input.addEventListener("input", updateColorPreview)
+    })
 
   formatRadios.forEach((radio) => {
     radio.addEventListener("change", updateColorPreview)
@@ -1044,10 +1044,10 @@ function initGradientGenerator() {
     updateGradientPreview()
   })
 
-  // Update preview and code on input change
-  ;[angle, position, color1, color2, color3, useColor3].forEach((input) => {
-    input.addEventListener("input", updateGradientPreview)
-  })
+    // Update preview and code on input change
+    ;[angle, position, color1, color2, color3, useColor3].forEach((input) => {
+      input.addEventListener("input", updateGradientPreview)
+    })
 
   angle.addEventListener("input", () => {
     angleValue.textContent = `${angle.value}deg`
@@ -1123,11 +1123,11 @@ function initAnimationGenerator() {
   // Play animation on button click
   playBtn.addEventListener("click", playAnimation)
 
-  // Update preview and code on input change
-  ;[animationName, timing, iteration, direction, fill, animationType].forEach((input) => {
-    input.addEventListener("change", updateAnimationPreview)
-    input.addEventListener("input", updateAnimationPreview)
-  })
+    // Update preview and code on input change
+    ;[animationName, timing, iteration, direction, fill, animationType].forEach((input) => {
+      input.addEventListener("change", updateAnimationPreview)
+      input.addEventListener("input", updateAnimationPreview)
+    })
 
   function playAnimation() {
     // Reset animation
@@ -2058,11 +2058,11 @@ function initSvgGenerator() {
     updateSvgPreview()
   })
 
-  // Update preview and code on input change
-  ;[svgType, svgColor, svgBgColor, svgBgEnabled].forEach((input) => {
-    input.addEventListener("input", updateSvgPreview)
-    input.addEventListener("change", updateSvgPreview)
-  })
+    // Update preview and code on input change
+    ;[svgType, svgColor, svgBgColor, svgBgEnabled].forEach((input) => {
+      input.addEventListener("input", updateSvgPreview)
+      input.addEventListener("change", updateSvgPreview)
+    })
 
   function updateSvgPreview() {
     const size = Number.parseInt(svgSize.value)
